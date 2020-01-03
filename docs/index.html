@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Stats for Data Science</title>
+  <meta name="description" content="Notes for the JMM 2020 workshop." />
+  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Stats for Data Science" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Notes for the JMM 2020 workshop." />
+  <meta name="github-repo" content="dtkaplan/jmm2020" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Stats for Data Science" />
+  
+  <meta name="twitter:description" content="Notes for the JMM 2020 workshop." />
+  
+
+<meta name="author" content="Daniel Kaplan" />
+
+
+<meta name="date" content="2020-01-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="stats-and-data-science.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Stats for Data Science</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Orientation</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#objective"><i class="fa fa-check"></i>Objective</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#the-new-elements"><i class="fa fa-check"></i>The new elements …</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#computing"><i class="fa fa-check"></i>Computing</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#jmm-2020-abstract"><i class="fa fa-check"></i>JMM 2020 Abstract</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i>Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="stats-and-data-science.html"><a href="stats-and-data-science.html"><i class="fa fa-check"></i><b>1</b> Stats and Data Science</a><ul>
+<li class="chapter" data-level="1.1" data-path="stats-and-data-science.html"><a href="stats-and-data-science.html#the-parable-of-the-highway."><i class="fa fa-check"></i><b>1.1</b> The parable of the highway.</a></li>
+<li class="chapter" data-level="1.2" data-path="stats-and-data-science.html"><a href="stats-and-data-science.html#whats-different-about-data-science"><i class="fa fa-check"></i><b>1.2</b> What’s different about data science?</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="core-statistical-tools.html"><a href="core-statistical-tools.html"><i class="fa fa-check"></i><b>2</b> Core statistical tools</a><ul>
+<li class="chapter" data-level="2.1" data-path="core-statistical-tools.html"><a href="core-statistical-tools.html#graphics"><i class="fa fa-check"></i><b>2.1</b> Graphics</a></li>
+<li class="chapter" data-level="2.2" data-path="core-statistical-tools.html"><a href="core-statistical-tools.html#models-and-effect-sizes"><i class="fa fa-check"></i><b>2.2</b> Models and effect sizes</a></li>
+<li class="chapter" data-level="2.3" data-path="core-statistical-tools.html"><a href="core-statistical-tools.html#variance"><i class="fa fa-check"></i><b>2.3</b> Variance</a></li>
+<li class="chapter" data-level="2.4" data-path="core-statistical-tools.html"><a href="core-statistical-tools.html#basic-discernibility"><i class="fa fa-check"></i><b>2.4</b> Basic discernibility</a></li>
+<li class="chapter" data-level="2.5" data-path="core-statistical-tools.html"><a href="core-statistical-tools.html#confidence-intervals-when-circcal-f-1"><i class="fa fa-check"></i><b>2.5</b> Confidence intervals (when <span class="math inline">\(^\circ\!{\cal F} = 1\)</span>)</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="computation.html"><a href="computation.html"><i class="fa fa-check"></i><b>3</b> Computation</a><ul>
+<li class="chapter" data-level="3.1" data-path="computation.html"><a href="computation.html#no-coding"><i class="fa fa-check"></i><b>3.1</b> No coding</a></li>
+<li class="chapter" data-level="3.2" data-path="computation.html"><a href="computation.html#coding"><i class="fa fa-check"></i><b>3.2</b> Coding</a></li>
+<li class="chapter" data-level="3.3" data-path="computation.html"><a href="computation.html#blank-canvas"><i class="fa fa-check"></i><b>3.3</b> Blank canvas</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="bayes-and-decision-making.html"><a href="bayes-and-decision-making.html"><i class="fa fa-check"></i><b>4</b> Bayes (and decision making)</a></li>
+<li class="chapter" data-level="5" data-path="machine-learning.html"><a href="machine-learning.html"><i class="fa fa-check"></i><b>5</b> Machine learning</a></li>
+<li class="chapter" data-level="6" data-path="causality-and-decision-making.html"><a href="causality-and-decision-making.html"><i class="fa fa-check"></i><b>6</b> Causality (and decision making)</a></li>
+<li class="chapter" data-level="7" data-path="more-aspects-to-data-science.html"><a href="more-aspects-to-data-science.html"><i class="fa fa-check"></i><b>7</b> More aspects to data science</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">JMM 2020 Workshop</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Stats for Data Science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Stats for Data Science</h1>
+<p class="author"><em>Daniel Kaplan</em></p>
+<p class="date"><em>2020-01-03</em></p>
+</div>
+<div id="orientation" class="section level1 unnumbered">
+<h1>Orientation</h1>
+<p>These are notes for the MAA sponsored minicourse <em>Stats for Data Science</em> at the 2020 Joint Mathematics Meetings in Denver, Colorado.</p>
+<ul>
+<li>Part A, Thursday, 1:00 –3:00 pm</li>
+<li>Part B, Saturday, 1:00–3:00 pm.</li>
+</ul>
+<div id="objective" class="section level2 unnumbered">
+<h2>Objective</h2>
+<p>I start with the presumption that you are interested in <strong>teaching data science</strong> and trying to sort out the possible relationship between <strong>introductory-level statistics</strong> and data science.</p>
+<p>My objective is to provide</p>
+<ul>
+<li>A complete outline of a plausible introductory course that genuinely engages data science while honestly covering core statistical topics in a statistical way.
+<ul>
+<li>For practical reasons of time, I’ll emphasize the <strong>new</strong> elements and not topics that can be carried over from an existing course like sampling bias, random assignment, etc.</li>
+<li>Also, for reasons of time, I’ll focus only on the statistical concepts and methods and not on data-science topics such as wrangling, cleaning, etc.</li>
+</ul></li>
+<li>Put you in a position where you can teach such a course starting, let’s say, next fall.
+<ul>
+<li>Not requiring you to master extensive new computational skills.</li>
+<li>Connected to many of the statistical topics you teach now … but considering which of those topics add genuine value and disregarding those that are merely included by tradition.</li>
+</ul></li>
+</ul>
+</div>
+<div id="the-new-elements" class="section level2 unnumbered">
+<h2>The new elements …</h2>
+<ol style="list-style-type: decimal">
+<li><p><strong>Streamline visualization</strong>. Adopt contemporary graphical modalities and by-pass the catalog of traditional formats. (15 minutes of this 4-hour mini-course)</p>
+<p>This frees up time in the your course, puts data at the center rather than theory, and avoids student confusion about why a particular style of graph is being used.</p></li>
+<li><p>Consistently use <strong>functions</strong> and <strong>effect sizes</strong> to describe relationships. (30 minutes of this 4-hour mini-course)</p>
+The functions will have the form <span class="math inline">\(y = f(x, z)\)</span> where
+<ul>
+<li><span class="math inline">\(y\)</span> is the response variable</li>
+<li><span class="math inline">\(x\)</span> and <span class="math inline">\(z\)</span> are explanatory variables.</li>
+<li><span class="math inline">\(z\)</span> plays the role of a <strong>covariate</strong>, that is, a variable not of direct interest that may color the observed relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</li>
+</ul>
+Effect sizes are slopes and differences. For this mathematically sophisticated audience, I’ll describe them as partial derivatives and partial differences:
+<ul>
+<li><span class="math inline">\(\partial y / \partial x\)</span> for continuous <span class="math inline">\(x\)</span></li>
+<li><span class="math inline">\(\Delta y\)</span> for categorical <span class="math inline">\(x\)</span></li>
+</ul>
+<p>I will treat model fitting as a calculator function: something that happens automatically once the inputs are provided.</p></li>
+<li><p><strong>Generalize inference</strong> which allows the presentation to be streamlined and simplified and, at the same time, to be extended to settings not usually touched on in an introductory course. (30 minutes of this 4-hour mini-course)</p>
+<ul>
+<li>Ignore theoretical niceties that are of questionable utility or validity in real work, e.g.
+<ul>
+<li><del>one-tailed tests</del></li>
+<li><del>unequal variance tests</del></li>
+</ul></li>
+<li><p>All inference will be about models and effect sizes. No methods, such as chi-squared, which produce only a p-value without an indication of the magnitude of the relationship.</p></li>
+<li><p>Pay heed to how much precision is actually needed in a result. For instance there’s no good reason to suggest that a p-value is meaningful past the second digit. So bypass calculations that worry about the third digit.</p></li>
+</ul></li>
+<li><p>Embrace <strong>causal reasoning</strong> from observational data. Teach students how to draw and recognize <em>responsible</em> conclusions about causation. (30 minutes)</p></li>
+<li>Integrate statistical findings with real-world <strong>decision making</strong>.
+<ul>
+<li><del>reject the null?</del></li>
+<li>cost functions</li>
+<li>trade-offs</li>
+<li>using statistical results in the context of larger frameworks.</li>
+</ul></li>
+</ol>
+</div>
+<div id="computing" class="section level2 unnumbered">
+<h2>Computing</h2>
+<p>I want to put aside the question of how much computing should be taught in (or before) introductory statistics.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> Instead, I’ll focus on teaching a course using only:</p>
+<ul>
+<li>paper and pencil estimation and calculation</li>
+<li>no-coding web apps that make detailed graphics and do precise calculations</li>
+</ul>
+
+<div class="figure"><span id="fig:phone-app"></span>
+<img src="images/little-app-phone-1.jpg" alt="Drawing graphics, model fitting, and statistical calculations can be carried out using a point-and-click web app. This is displayed in a regular browser window and can be plausibly used with a smart phone. We’ll use this app later in the mini-course." width="45%" />
+<p class="caption">
+Figure 0.1: Drawing graphics, model fitting, and statistical calculations can be carried out using a point-and-click web app. This is displayed in a regular browser window and can be plausibly used with a smart phone. We’ll use this app later in the mini-course.
+</p>
+</div>
+</div>
+<div id="jmm-2020-abstract" class="section level2 unnumbered">
+<h2>JMM 2020 Abstract</h2>
+<p>As universities and colleges rush to offer courses and even degree programs in data science, it’s fair to wonder whether data science is genuinely new or is merely a rebranding of statistics. This mini-course will introduce participants to important and substantial ways that a statistics course that genuinely engages data science differs from traditional statistics.These include an emphasis on prediction, classification and causality rather than the traditional focus on estimation and significance. During the mini-course, we’ll work through both theoretical and computational exercises from a new book, Stats for Data Science (available at <a href="https://dtkaplan.github.io/SDS-book/preface.html" class="uri">https://dtkaplan.github.io/SDS-book/preface.html</a>). The workshop is appropriate for anyone from a newcomer to statistical computing to experts. Some small groups in the mini-course will choose to use mouse-driven “Little Apps” to display data-science oriented statistical concepts. Others will choose to work with interactive R tutorials based on modern modeling and graphics packages in R. Participants should bring a laptop or tablet. All work will be browser based; there’s no need to install new software.</p>
+</div>
+<div id="resources" class="section level2 unnumbered">
+<h2>Resources</h2>
+<ul>
+<li>Participant notes, comments, suggestions, questions, etc.</li>
+<li>Participant introductions</li>
+<li>Books
+<ul>
+<li><a href="http://dtkaplan.github.io/SDS-book"><em>Stats for Data Science</em></a> textbook. The link is to the current draft of a textbook I am writing to explore how statistics can be taught in a way that genuinely embraces the typical goals of data-science practice.</li>
+<li><em><a href="http://dtkaplan/github.io/CompactInference/private">A Compact Guide to Classical Inference</a></em> by Daniel Kaplan. This book deals with one small but important part making a mental and teaching transition from a conventional intro stat course into a course suitable for data science. In particular, the <em>Compact Guide</em> approaches statistical description using model functions and, with this basis, unifies and simplifies the inferential settings typically covered in inferential stats. All those traditional settings–difference of means and of proportions, simple regression, inference on contingency tables, one-way analysis of variance, two-way analysis of variance, multiple regression–are translated into a single test statistic, F, with a simple formula and simple interpretations. For instance, statistical “significance”<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> is addressed by the simple question, is <span class="math inline">\(F &gt; 4\)</span>. Confidence intervals on differences and slopes are all shown to have the same form, proportional to <span class="math inline">\(1 \pm \sqrt{4 / F}\)</span>.</li>
+<li><em><a href="http://moderndive.com/">Statistical Inference via Data Science</a></em> by Chester Ismay and Albert Y. Kim. For the introductory-course instructor who is not shy of using R with her class and who wants to touch on non-statistical aspects of data science such as data wrangling, this can be good choice for a textbook. The statistical topics are conventional, but the book wisely leaves the mean-median-mode stuff for an appendix. In the sense that the presentation of statistics is based on regression, I see this book as a kind updating for data science and recent developments in R of <em>Statistical Modeling</em>. (See next entry). <em>Statistical Inference</em> is not as radical as <em>Stats for Data Science</em>, but for many instructors that’s probably a good thing. There are exercises (“learning checks”) and solutions.</li>
+<li><em><a href="https://dtkaplan.github.io/SM2-bookdown/introduction.html">Statistical Modeling: A Fresh Approach</a></em> by Daniel Kaplan was my attempt, circa 2010, to re-imagine what can be done in an introductory statistics course to make the course more relevant to genuine practice, take confounding seriously, and provide room for student creativity in framing statistical questions. So, instead of “do I use t or chi-squared?” the question becomes “what covariates are relevant and what are the implications of including them in a statistical analysis?”</li>
+<li><em><a href="https://web.stanford.edu/~hastie/CASI_files/PDF/casi.pdf">Computer Age Statistical Inference</a> by Bradley Efron and Trevor Hastie. This is a concise review of classical statistical inference that is much broader than the </em>Compact Guide* and particularly oriented to deep theoretical limitations of classical inference and a couple of generations of work to overcome those limitations.</li>
+<li><em><a href="https://www.amazon.com/Book-Why-Science-Cause-Effect/dp/046509760X">The Book of Why</a></em> by Judea Pearl and Dana Mackenzie. This is a fantastic introduction to causal inference which, yes, does go beyond the pat “correlation is not causation” or “no causation without experimentation.”</li>
+<li><em><a href="https://www.amazon.com/Theory-That-Would-Not-Die-ebook/dp/B0050QB3EQ">The Theory that Would not Die</a></em> by Sharon Bertsch McGrayne. The subtitle is “How Bayes’ Rule Cracked the Enigma Code, Hunted Down Russian Submarines, and Emerged Triumphant from Two Centuries of Controversy” which aptly describe the book’s historical approach. This isn’t a textbook, but it is a good way to see why Bayes is important.</li>
+<li><em><a href="https://mdsr-book.github.io/">Modern Data Science with R</a></em> by Ben Baumer, Daniel Kaplan, and Nicholas Horton. This book covers a wide range of data science techniques, but wouldn’t be suitable for a <em>statistics</em> course.</li>
+<li><em><a href="https://r4ds.had.co.nz/">R for Data Science</a></em> by Garrett Golemund and Hadley Wickham. Like <em>Modern Data Science with R</em>, it’s not a suitable book for a statistics course. But it’s an excellent (even canonical) choice to make sense of the recent generation of R data-science tools.</li>
+</ul></li>
+<li>Little Apps. These are web-based apps that provide statistical computing capabilities <em>without coding</em>. There are, of course, many other apps provided to the stat-ed community such as the Lock<sup>5</sup> <a href="http://www.lock5stat.com/StatKey/index.html">StatKey</a> collections and Dan Adrian’s <a href="http://statprep.org/1204-2/#more-1204">Happy Apps</a>.
+<ol style="list-style-type: decimal">
+<li><a href="http://dtkaplan.shinyapps.io/LittleAppMockup">Functions and F statistics</a>. This is the Little App written specifically for the <em>Compact Guide</em>. It also happens to be the prototype for the next generation of Little Apps that are mobile-device ready.</li>
+<li><a href="https://dtkaplan.shinyapps.io/LA_linear_regression/">Regression models</a> is a pre-cursor to the <em>Functions and F statistics</em> Little App. It explains the idea of <em>model values</em>, which are simply the values of a statistical model evaluated using the training data as input.</li>
+<li><a href="https://dtkaplan.shinyapps.io/LA_bootstrap/">Resampling and Bootstrapping</a> demonstrates these ideas graphically.</li>
+<li>A few other Little Apps, developed as part of &lt;StatPREP.org&gt;, cover topics of the traditional intro course such as <a href="https://dtkaplan.shinyapps.io/LA_t_test/">t-tests</a>, the <a href="https://dtkaplan.shinyapps.io/LA_rare_and_common/">normal distribution</a> and <a href="https://dtkaplan.shinyapps.io/LA_center_spread/">center and spread</a>.</li>
+</ol></li>
+<li>Computing tutorials
+<ol style="list-style-type: decimal">
+<li>GET THE LIST FROM STATPREP.org. MAYBE WRITE ONE FOR THE COMPACT GUIDE?</li>
+</ol></li>
+</ul>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>In my own courses I strongly emphasize technical computing and professional workflows.<a href="index.html#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>Recently, Jeff Witmer at Oberlin College suggested replacing the misleading technical use of an everyday word with an utterly different meaning: significance. His suggestion is “discernible” and “discernibility”, as in “the difference is statistically <em>discernible</em>” or “one part of inference is statistical <em>discernibility</em>”.<a href="index.html#fnref2" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="stats-and-data-science.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/dtkaplan/jmm-2020/edit/master/index.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["JMM-2020.pdf", "JMM-2020.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

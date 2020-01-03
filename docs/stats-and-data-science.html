@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 1 Stats and Data Science | Stats for Data Science</title>
+  <meta name="description" content="Notes for the JMM 2020 workshop." />
+  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 1 Stats and Data Science | Stats for Data Science" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Notes for the JMM 2020 workshop." />
+  <meta name="github-repo" content="dtkaplan/jmm2020" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 1 Stats and Data Science | Stats for Data Science" />
+  
+  <meta name="twitter:description" content="Notes for the JMM 2020 workshop." />
+  
+
+<meta name="author" content="Daniel Kaplan" />
+
+
+<meta name="date" content="2020-01-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="core-statistical-tools.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Stats for Data Science</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Orientation</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#objective"><i class="fa fa-check"></i>Objective</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#the-new-elements"><i class="fa fa-check"></i>The new elements …</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#computing"><i class="fa fa-check"></i>Computing</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#jmm-2020-abstract"><i class="fa fa-check"></i>JMM 2020 Abstract</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i>Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="stats-and-data-science.html"><a href="stats-and-data-science.html"><i class="fa fa-check"></i><b>1</b> Stats and Data Science</a><ul>
+<li class="chapter" data-level="1.1" data-path="stats-and-data-science.html"><a href="stats-and-data-science.html#the-parable-of-the-highway."><i class="fa fa-check"></i><b>1.1</b> The parable of the highway.</a></li>
+<li class="chapter" data-level="1.2" data-path="stats-and-data-science.html"><a href="stats-and-data-science.html#whats-different-about-data-science"><i class="fa fa-check"></i><b>1.2</b> What’s different about data science?</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="core-statistical-tools.html"><a href="core-statistical-tools.html"><i class="fa fa-check"></i><b>2</b> Core statistical tools</a><ul>
+<li class="chapter" data-level="2.1" data-path="core-statistical-tools.html"><a href="core-statistical-tools.html#graphics"><i class="fa fa-check"></i><b>2.1</b> Graphics</a></li>
+<li class="chapter" data-level="2.2" data-path="core-statistical-tools.html"><a href="core-statistical-tools.html#models-and-effect-sizes"><i class="fa fa-check"></i><b>2.2</b> Models and effect sizes</a></li>
+<li class="chapter" data-level="2.3" data-path="core-statistical-tools.html"><a href="core-statistical-tools.html#variance"><i class="fa fa-check"></i><b>2.3</b> Variance</a></li>
+<li class="chapter" data-level="2.4" data-path="core-statistical-tools.html"><a href="core-statistical-tools.html#basic-discernibility"><i class="fa fa-check"></i><b>2.4</b> Basic discernibility</a></li>
+<li class="chapter" data-level="2.5" data-path="core-statistical-tools.html"><a href="core-statistical-tools.html#confidence-intervals-when-circcal-f-1"><i class="fa fa-check"></i><b>2.5</b> Confidence intervals (when <span class="math inline">\(^\circ\!{\cal F} = 1\)</span>)</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="computation.html"><a href="computation.html"><i class="fa fa-check"></i><b>3</b> Computation</a><ul>
+<li class="chapter" data-level="3.1" data-path="computation.html"><a href="computation.html#no-coding"><i class="fa fa-check"></i><b>3.1</b> No coding</a></li>
+<li class="chapter" data-level="3.2" data-path="computation.html"><a href="computation.html#coding"><i class="fa fa-check"></i><b>3.2</b> Coding</a></li>
+<li class="chapter" data-level="3.3" data-path="computation.html"><a href="computation.html#blank-canvas"><i class="fa fa-check"></i><b>3.3</b> Blank canvas</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="bayes-and-decision-making.html"><a href="bayes-and-decision-making.html"><i class="fa fa-check"></i><b>4</b> Bayes (and decision making)</a></li>
+<li class="chapter" data-level="5" data-path="machine-learning.html"><a href="machine-learning.html"><i class="fa fa-check"></i><b>5</b> Machine learning</a></li>
+<li class="chapter" data-level="6" data-path="causality-and-decision-making.html"><a href="causality-and-decision-making.html"><i class="fa fa-check"></i><b>6</b> Causality (and decision making)</a></li>
+<li class="chapter" data-level="7" data-path="more-aspects-to-data-science.html"><a href="more-aspects-to-data-science.html"><i class="fa fa-check"></i><b>7</b> More aspects to data science</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">JMM 2020 Workshop</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Stats for Data Science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="stats-and-data-science" class="section level1">
+<h1><span class="header-section-number">Chapter 1</span> Stats and Data Science</h1>
+<div id="the-parable-of-the-highway." class="section level2">
+<h2><span class="header-section-number">1.1</span> The parable of the highway.</h2>
+
+<div class="figure"><span id="fig:street-1936"></span>
+<img src="images/street-scene-1936.jpg" alt="Urban driving in 1936." width="60%" />
+<p class="caption">
+Figure 1.1: Urban driving in 1936.
+</p>
+</div>
+<p>Statistics and automobiles have timelines that overlap nicely:</p>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Statistics</th>
+<th>Automobiles</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1888 Francis Galton introduces the “co-relation” coefficient</td>
+<td>1885 Karl Benz designs 4-stroke engine for use in his automobile</td>
+</tr>
+<tr class="even">
+<td><img src="images/Galtons_correlation_diagram_1875.jpg" /></td>
+<td><img src="images/1885Benz.jpg" /></td>
+</tr>
+<tr class="odd">
+<td>1908 William Gossett’s t statistic</td>
+<td>1908 First Model T off Henry Ford’s production line</td>
+</tr>
+<tr class="even">
+<td><img src="images/student_diag2.gif" /></td>
+<td><img src="images/220px-1910Ford-T.jpg" /></td>
+</tr>
+<tr class="odd">
+<td>1925 ANOVA appears in Fisher’s <em>Statistical Methods for Research Workers</em></td>
+<td>1927 Ford Model A enters production</td>
+</tr>
+<tr class="even">
+<td><img src="images/Fisher-F-distr.png" /></td>
+<td><img src="images/1931_Ford_Model_A_Town_Car_Sedan_Delivery.jpg" /></td>
+</tr>
+</tbody>
+</table>
+<p>There’s much more history to come, of course.</p>
+<p>Imagine you were asked to teach design a course about automobiles. You know a lot about automobiles and you’d have to make some choices about what to include.</p>
+<p>How much history?
+How much of the early technology?
+spark advance
+carburation
+tires with tubes
+steering tillers
+How much about contemporary technology
+fuel injection
+anti-lock breaks and stability control
+catalytic converters, oxygen sensors, …
+Automobile safety (starting about 1960)
+Road systems (e.g. Interstate highways, starting mid 1950s)
+Traffic jams and attempts to solve the problem
+Pollution and attempts to solve the problem
+Ride sharing
+Electric vehicles
+Self-driving vehicles
+If your goal is to orient students to the use and role of the automobile in the contemporary world, chances are you would skip carburation and tire-tube patching. Not much there to help contemporary automobile users.</p>
+<p>Probably you won’t be in the situation of designing a course about automobiles, even though you could teach one if need be. After all, you encounter automobiles every day. You probably drive them yourself. And you probably have been in the situation of choosing a car to buy, making the familiar trade-offs of performance, capacity, cost, fuel economy, etc.</p>
+<p>The situation you are actually in is that you have been asked to teach statistics. You might have taken a statistics course in college (but this is true for only a small minority of the math faculty teaching statistics). If you’re a mathematician, you probably have done little or no research applying statistics. Likely as well, you’ve never been in the position of having to choose statistical methods to use in studying a system of any complexity. And the statistics course that you do teach likely just barely reaches ANOVA as a topic. That is, your statistics course ends about 1925.</p>
+<p>Let’s give you 1926. That’s when Ronald Fisher introduced the 0.05 threshold, writing, “… it is convenient to draw the line at about the level at which we can say: ‘Either there is something in the treatment, or a coincidence has occurred such as does not occur more than once in twenty trials.’… If one in twenty does not seem high enough odds, we may, if we prefer it, draw the line at one in fifty (the 2 per cent point), or one in a hundred (the 1 per cent point). Personally, the writer prefers to set a low standard of significance at the 5 per cent point, and ignore entirely all results which fail to reach this level. A scientific fact should be regarded as experimentally established only if a properly designed experiment rarely fails to give this level of significance.”</p>
+<p>The world has changed in so many ways since 1926. Statistical methods have changed: model building is now central. Availability of data has changed: we rarely (except in textbooks) work with <span class="math inline">\(n=5\)</span> measurement of a single variable. Graphical presentations have changed: we don’t need. Even the context has changed: the 0.05 p-value threshold, long scorned by professional statisticians, might have made sense in a world where a few professional scientists carried out bench-top experiments and routinely confirmed each other’s work. Today, of course, there are legions of scientists, huge numbers of publications, a professional penalty for “merely” repeating the work of others, and work involving tens or hundreds or even millions of variables. Statistics is no longer primarily a tool for the experimentalist, it is used to search for patterns in observational data and to predict outcomes from available inputs. And statistics is used to explore causality in observational systems, something that is discouraged strongly by textbooks, much like a driver in 1925 would be discouraged from driving across country in what is by any modern standard an outrageously unreliable and unsafe vehicle driven on roads that could hardly be called a road “system” with few supplies or comforts en route.</p>
+<p>So why are we teaching statistics courses about the Model T and Model A? It’s not because students need to calculate standard errors and quantiles of the t-distribution. It’s because we neither “drive” statistics or even see contemporary statistical vehicles or the road, safety, and traffic conditions for which they were developed. We need to discard the carburation of t distributions in favor of the fuel injection and stability control of modern computation and graphics. More fundamentally, we need to help move instructors from a system where they learn statistics from the textbooks they are teaching from, to a system where they are experienced with approaches to the kinds of problems faced by the data scientists and consumers of statistics today.</p>
+
+<div class="figure"><span id="fig:contemporary-traffic"></span>
+<img src="images/highway-jam.jpg" alt="A contemporary highway scene. The demands on cars and drivers are different today than in 1936." width="512" />
+<p class="caption">
+Figure 1.2: A contemporary highway scene. The demands on cars and drivers are different today than in 1936.
+</p>
+</div>
+</div>
+<div id="whats-different-about-data-science" class="section level2">
+<h2><span class="header-section-number">1.2</span> What’s different about data science?</h2>
+<ul>
+<li>Prediction</li>
+<li>Large data sets</li>
+<li>Multiple “tests” – e.g. batting averages</li>
+<li>Causality</li>
+<li><strong>Decision making</strong>
+<ul>
+<li>integrate the information from data into a broader framework</li>
+<li>Examples:
+<ul>
+<li>Screening versus diagnostic tests</li>
+<li>Fuel economy. Not “Is fuel economy different at different speeds?” but “How different is it and what are the implications of this for my decision?”</li>
+</ul></li>
+</ul></li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="core-statistical-tools.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/dtkaplan/jmm-2020/edit/master/01-intro.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["JMM-2020.pdf", "JMM-2020.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

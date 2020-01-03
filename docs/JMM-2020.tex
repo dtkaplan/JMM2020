@@ -1,0 +1,434 @@
+\documentclass[]{book}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Stats for Data Science},
+            pdfauthor={Daniel Kaplan},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{natbib}
+\bibliographystyle{apalike}
+\usepackage{longtable,booktabs}
+\usepackage{graphicx}
+% grffile has become a legacy package: https://ctan.org/pkg/grffile
+\IfFileExists{grffile.sty}{%
+\usepackage{grffile}
+}{}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\providecommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{Stats for Data Science}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{Daniel Kaplan}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{2020-01-03}
+
+\usepackage{booktabs}
+\usepackage{amsthm}
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=8pt plus 2pt minus 4pt
+  \thm@postskip=\thm@preskip
+}
+\makeatother
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{orientation}{%
+\chapter*{Orientation}\label{orientation}}
+\addcontentsline{toc}{chapter}{Orientation}
+
+These are notes for the MAA sponsored minicourse \emph{Stats for Data Science} at the 2020 Joint Mathematics Meetings in Denver, Colorado.
+
+\begin{itemize}
+\tightlist
+\item
+  Part A, Thursday, 1:00 --3:00 pm
+\item
+  Part B, Saturday, 1:00--3:00 pm.
+\end{itemize}
+
+\hypertarget{abstract}{%
+\section*{Abstract}\label{abstract}}
+\addcontentsline{toc}{section}{Abstract}
+
+As universities and colleges rush to offer courses and even degree programs in data science, it's fair to wonder whether data science is genuinely new or is merely a rebranding of statistics. This mini-course will introduce participants to important and substantial ways that a statistics course that genuinely engages data science differs from traditional statistics.These include an emphasis on prediction, classification and causality rather than the traditional focus on estimation and significance. During the mini-course, we'll work through both theoretical and computational exercises from a new book, Stats for Data Science (available at \url{https://dtkaplan.github.io/SDS-book/preface.html}). The workshop is appropriate for anyone from a newcomer to statistical computing to experts. Some small groups in the mini-course will choose to use mouse-driven ``Little Apps'' to display data-science oriented statistical concepts. Others will choose to work with interactive R tutorials based on modern modeling and graphics packages in R. Participants should bring a laptop or tablet. All work will be browser based; there's no need to install new software.
+
+\hypertarget{resources}{%
+\section*{Resources}\label{resources}}
+\addcontentsline{toc}{section}{Resources}
+
+\begin{itemize}
+\tightlist
+\item
+  Participant notes, comments, suggestions, questions, etc.
+\item
+  Participant introductions
+\item
+  Books
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \href{http://dtkaplan.github.io/SDS-book}{\emph{Stats for Data Science}} textbook. The link is to the current draft of a textbook I am writing to explore how statistics can be taught in a way that genuinely embraces the typical goals of data-science practice.
+  \item
+    \emph{\href{http://dtkaplan/github.io/CompactInference/private}{A Compact Guide to Classical Inference}} by Daniel Kaplan. This book deals with one small but important part making a mental and teaching transition from a conventional intro stat course into a course suitable for data science. In particular, the \emph{Compact Guide} approaches statistical description using model functions and, with this basis, unifies and simplifies the inferential settings typically covered in inferential stats. All those traditional settings--difference of means and of proportions, simple regression, inference on contingency tables, one-way analysis of variance, two-way analysis of variance, multiple regression--are translated into a single test statistic, F, with a simple formula and simple interpretations. For instance, statistical ``significance''\footnote{Recently, Jeff Witmer at Oberlin College suggested replacing the misleading technical use of an everyday word with an utterly different meaning: significance. His suggestion is ``discernible'' and ``discernibility'', as in ``the difference is statistically \emph{discernible}'' or ``one part of inference is statistical \emph{discernibility}''.} is addressed by the simple question, is \(F > 4\). Confidence intervals on differences and slopes are all shown to have the same form, proportional to \(1 \pm \sqrt{4 / F}\).
+  \item
+    \emph{\href{http://moderndive.com/}{Statistical Inference via Data Science}} by Chester Ismay and Albert Y. Kim. For the introductory-course instructor who is not shy of using R with her class and who wants to touch on non-statistical aspects of data science such as data wrangling, this can be good choice for a textbook. The statistical topics are conventional, but the book wisely leaves the mean-median-mode stuff for an appendix. In the sense that the presentation of statistics is based on regression, I see this book as a kind updating for data science and recent developments in R of \emph{Statistical Modeling}. (See next entry). \emph{Statistical Inference} is not as radical as \emph{Stats for Data Science}, but for many instructors that's probably a good thing. There are exercises (``learning checks'') and solutions.
+  \item
+    \emph{\href{https://dtkaplan.github.io/SM2-bookdown/introduction.html}{Statistical Modeling: A Fresh Approach}} by Daniel Kaplan was my attempt, circa 2010, to re-imagine what can be done in an introductory statistics course to make the course more relevant to genuine practice, take confounding seriously, and provide room for student creativity in framing statistical questions. So, instead of ``do I use t or chi-squared?'' the question becomes ``what covariates are relevant and what are the implications of including them in a statistical analysis?''
+  \item
+    \emph{\href{https://web.stanford.edu/~hastie/CASI_files/PDF/casi.pdf}{Computer Age Statistical Inference} by Bradley Efron and Trevor Hastie. This is a concise review of classical statistical inference that is much broader than the }Compact Guide* and particularly oriented to deep theoretical limitations of classical inference and a couple of generations of work to overcome those limitations.
+  \item
+    \emph{\href{https://www.amazon.com/Book-Why-Science-Cause-Effect/dp/046509760X}{The Book of Why}} by Judea Pearl and Dana Mackenzie. This is a fantastic introduction to causal inference which, yes, does go beyond the pat ``correlation is not causation'' or ``no causation without experimentation.''
+  \item
+    \emph{\href{https://www.amazon.com/Theory-That-Would-Not-Die-ebook/dp/B0050QB3EQ}{The Theory that Would not Die}} by Sharon Bertsch McGrayne. The subtitle is ``How Bayes' Rule Cracked the Enigma Code, Hunted Down Russian Submarines, and Emerged Triumphant from Two Centuries of Controversy'' which aptly describe the book's historical approach. This isn't a textbook, but it is a good way to see why Bayes is important.
+  \item
+    \emph{\href{https://mdsr-book.github.io/}{Modern Data Science with R}} by Ben Baumer, Daniel Kaplan, and Nicholas Horton. This book covers a wide range of data science techniques, but wouldn't be suitable for a \emph{statistics} course.
+  \item
+    \emph{\href{https://r4ds.had.co.nz/}{R for Data Science}} by Garrett Golemund and Hadley Wickham. Like \emph{Modern Data Science with R}, it's not a suitable book for a statistics course. But it's an excellent (even canonical) choice to make sense of the recent generation of R data-science tools.
+  \end{itemize}
+\item
+  Little Apps. These are web-based apps that provide statistical computing capabilities \emph{without coding}. There are, of course, many other apps provided to the stat-ed community such as the Lock\textsuperscript{5} \href{http://www.lock5stat.com/StatKey/index.html}{StatKey} collections and Dan Adrian's \href{http://statprep.org/1204-2/\#more-1204}{Happy Apps}.
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    \href{http://dtkaplan.shinyapps.io/LittleAppMockup}{Functions and F statistics}. This is the Little App written specifically for the \emph{Compact Guide}. It also happens to be the prototype for the next generation of Little Apps that are mobile-device ready.
+  \item
+    \href{https://dtkaplan.shinyapps.io/LA_linear_regression/}{Regression models} is a pre-cursor to the \emph{Functions and F statistics} Little App. It explains the idea of \emph{model values}, which are simply the values of a statistical model evaluated using the training data as input.
+  \item
+    \href{https://dtkaplan.shinyapps.io/LA_bootstrap/}{Resampling and Bootstrapping} demonstrates these ideas graphically.
+  \item
+    A few other Little Apps, developed as part of \textless{}StatPREP.org\textgreater{}, cover topics of the traditional intro course such as \href{https://dtkaplan.shinyapps.io/LA_t_test/}{t-tests}, the \href{https://dtkaplan.shinyapps.io/LA_rare_and_common/}{normal distribution} and \href{https://dtkaplan.shinyapps.io/LA_center_spread/}{center and spread}.
+  \end{enumerate}
+\item
+  Computing tutorials
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    GET THE LIST FROM STATPREP.org. MAYBE WRITE ONE FOR THE COMPACT GUIDE?
+  \end{enumerate}
+\end{itemize}
+
+\hypertarget{stats-and-data-science}{%
+\chapter{Stats and Data Science}\label{stats-and-data-science}}
+
+\hypertarget{the-parable-of-the-highway.}{%
+\section{The parable of the highway.}\label{the-parable-of-the-highway.}}
+
+Pictures of Denver in 1910 and a highway exchange in 1980+.
+
+Car pictures.
+
+\hypertarget{whats-different-about-data-science}{%
+\section{What's different about data science?}\label{whats-different-about-data-science}}
+
+\begin{itemize}
+\tightlist
+\item
+  Prediction
+\item
+  Large data sets
+\item
+  Multiple ``tests'' -- e.g.~batting averages
+\item
+  Causality
+\item
+  \textbf{Decision making}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    integrate the information from data into a broader framework
+  \item
+    Examples:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Screening versus diagnostic tests
+    \item
+      Fuel economy. Not ``Is fuel economy different at different speeds?'' but ``How different is it and what are the implications of this for my decision?''
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{core-statistical-tools}{%
+\chapter{Core statistical tools}\label{core-statistical-tools}}
+
+This will be paper-and-pencil introductions to the tools.
+
+Note that I'm being much more mathy here than I would in teaching a typical class. The audience here is professional mathematicians, hence likely not too scared by algebraic notation.
+
+\hypertarget{graphics}{%
+\section{Graphics}\label{graphics}}
+
+\begin{itemize}
+\tightlist
+\item
+  Data graphics
+\item
+  Density graphics
+\item
+  Interval graphics
+\end{itemize}
+
+\hypertarget{models-and-effect-sizes}{%
+\section{Models and effect sizes}\label{models-and-effect-sizes}}
+
+Summarizing a relationship with a function
+
+We'll start with models with a single \emph{degree of flexibility}, that is \(^\circ{\cal F} = 1\). This includes all the settings covered in most introductory stats courses.
+
+\hypertarget{variance}{%
+\section{Variance}\label{variance}}
+
+Average pairwise square differences between values.
+
+\[\frac{1}{n (n-1)}\sum_{i \neq j} |x_i - x_j|^2 = 2\  \mbox{Var}(x)\]
+
+\hypertarget{basic-discernibility}{%
+\section{Basic discernibility}\label{basic-discernibility}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Is there any discernible relationship between the response and explanatory variables revealed by the model?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Inputs from the model: \(v_r\), \(v_m\), \(n\), and degrees of flexibility \(^\circ{\cal F}\)
+  \item
+    Output:
+    \[\mbox{F} = \frac{n - (^\circ{\cal F} + 1)}{^\circ{\cal F}} \frac{v_m}{v_r - v_m}\]
+  \item
+    Interpretation: Is F \(\gtrapprox 4\)?. Then a relationship is discernible.
+  \end{itemize}
+\item
+  Given a \emph{base} model and a proposed \emph{elaboration} of that model, does the elaboration reveal new aspects of the relationship between the response and explanatory variables?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Inputs from the model:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \(v_r\) and \(n\)
+    \item
+      \(v_m^{base}\) and \(v_m^{elab}\),
+    \item
+      degrees of flexibility \(^\circ\!{\cal F}^{base}\) and \(^\circ\!{\cal F}^{elab}\)
+    \end{itemize}
+  \item
+    Output:
+  \end{itemize}
+
+  \[\Delta \mbox{F} = \frac{n - (^\circ\!{\cal F}^{elab} + 1)}{^\circ\!{\cal F}^{elab} - ^\circ\!{\cal F}^{base}}  \cdot \frac{v_m^{elab} - v_m^{base}}{v_r - v_m^{elab}}\]
+
+  \begin{itemize}
+  \item
+    Interpretation: Is \(\Delta\)F \(\gtrapprox 4\)? Then a relationship is \emph{discernible}.\footnote{Recall that I'm using \emph{discernible} as a replacement for \emph{significant}, as proposed by Jeff Witmer.}
+  \item
+    Notes:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      The special case of a model with \(^\circ{\cal F} = 0\) is called the \emph{Null Model} and corresponds to the claim that there is no relationship between the explanatory variables and the response variable. In this special case, \(\mbox{F} = \Delta \mbox{F}\).
+    \item
+      \(\Delta \mbox{F} \neq \mbox{F}^{elab} - \mbox{F}^{base}\)
+    \end{itemize}
+  \end{itemize}
+\end{enumerate}
+
+\hypertarget{confidence-intervals-when-circcal-f-1}{%
+\section{\texorpdfstring{Confidence intervals (when \(^\circ\!{\cal F} = 1\))}{Confidence intervals (when \^{}\textbackslash{}circ\textbackslash{}!\{\textbackslash{}cal F\} = 1)}}\label{confidence-intervals-when-circcal-f-1}}
+
+When \(^\circ\!{\cal F} = 1\), there is only one explanatory variable and the modeling situation is one of these:
+
+\begin{itemize}
+\tightlist
+\item
+  difference between two groups
+\item
+  slope of a regression line
+\end{itemize}
+
+Either way, there is only one effect size: the difference or slope.
+
+\begin{itemize}
+\tightlist
+\item
+  Inputs:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Effect size B
+  \item
+    F
+  \end{itemize}
+\item
+  Output:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Margin of error is \(\pm \mbox{B} \sqrt{4 / \mbox{F}}\)
+  \end{itemize}
+\item
+  Interpretation:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    We wouldn't be at all surprised if a much, much bigger study revealed an effect size within the confidence interval. - If we are comparing our study to another study, we're only justified in claiming a contradiction when the two confidence intervals don't overlap.\\
+  \item
+    Do we really need to refer to populations?
+  \end{itemize}
+\end{itemize}
+
+Note that when \(^\circ\!{\cal F} \geq 2\), there is either more than one explanatory variable or more than one group in that explanatory variable or a non-straight-line regression (e.g.~a polynomial). In none of these cases can the margin of error be deduced directly from F due to one or more of:
+
+\begin{itemize}
+\tightlist
+\item
+  effect size not constant
+\item
+  multiple effect sizes
+\item
+  collinearity among explanatory variables
+\end{itemize}
+
+Instead of the simple formula based on F, confidence intervals can be based on a regression table or bootstrapping.
+
+\hypertarget{computation}{%
+\chapter{Computation}\label{computation}}
+
+\hypertarget{no-coding}{%
+\section{No coding}\label{no-coding}}
+
+Infrastructure: a browser. Can work on a smart phone.
+
+The Little Apps
+
+\hypertarget{coding}{%
+\section{Coding}\label{coding}}
+
+Infrastructure: a browser. Need a tablet+-sized screen and a keyboard.
+
+RStudio tutorials
+
+\hypertarget{blank-canvas}{%
+\section{Blank canvas}\label{blank-canvas}}
+
+Reproducible tools: Rmd
+
+\hypertarget{bayes-and-decision-making}{%
+\chapter{Bayes (and decision making)}\label{bayes-and-decision-making}}
+
+\hypertarget{machine-learning}{%
+\chapter{Machine learning}\label{machine-learning}}
+
+Cross validation
+
+Bootstrapping
+
+\hypertarget{causality-and-decision-making}{%
+\chapter{Causality (and decision making)}\label{causality-and-decision-making}}
+
+\hypertarget{more-aspects-to-data-science}{%
+\chapter{More aspects to data science}\label{more-aspects-to-data-science}}
+
+Data science is not merely a \emph{rebranding} of statistics.
+
+The scenario where statisticians would have come to lead the development of data science is plausible, but historically computer scientists and people from fields such as genetics, marketing, public health, medicine, remote sensing, etc. have played crucial roles.
+
+Whether or not data science ought to be considered part of the mathematical sciences, any genuine approach should be fundamentally based in realistic applications and the actual kinds of problems--especially decision making--that data science is used to address.
+
+For concise introductions to wrangling and visualization, see \emph{\href{http://moderndive.com/}{Statistical Inference via Data Science}} by Chester Ismay and Albert Y. Kim or \emph{\href{https://dtkaplan.github.io/DataComputingEbook/}{Data Computing}} by Daniel Kaplan and Matthew Beckman.
+
+I don't know of a concise introduction to \emph{decision making} from the statistics, mathematics, or computer science perspectives. (Please tell me if you do know of one!) But if you are willing to wade into the business literature, you would do well with \emph{\href{https://www.amazon.com/How-Measure-Anything-Intangibles-Business-ebook/dp/B00INUYS2U/ref=pd_sim_351_1/130-1891063-4524949?_encoding=UTF8\&pd_rd_i=B00INUYS2U\&pd_rd_r=32024490-cad3-4711-b83a-f50cd25fc381\&pd_rd_w=sZwy1\&pd_rd_wg=z8fga\&pf_rd_p=04d27813-a1f2-4e7b-a32b-b5ab374ce3f9\&pf_rd_r=JBWKKZ2FBZT91HD87EZD\&psc=1\&refRID=JBWKKZ2FBZT91HD87EZD}{How to Measure Anything}} by Douglas Hubbard. It even has a \href{https://www.amazon.com/How-Measure-Anything-Workbook-Intangibles-ebook/dp/B00IPG7CH0/ref=pd_sim_351_1/130-1891063-4524949?_encoding=UTF8\&pd_rd_i=B00IPG7CH0\&pd_rd_r=3ba15b27-45a9-4c39-bf5c-7155fcf0bca2\&pd_rd_w=npc9z\&pd_rd_wg=JdiFD\&pf_rd_p=04d27813-a1f2-4e7b-a32b-b5ab374ce3f9\&pf_rd_r=3ARMRY192FZ343N2J0DB\&psc=1\&refRID=3ARMRY192FZ343N2J0DB}{workbook}.
+
+
+\end{document}

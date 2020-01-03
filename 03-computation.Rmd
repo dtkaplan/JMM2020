@@ -1,0 +1,20 @@
+# Computation
+
+## No coding
+
+Infrastructure: a browser. Can work on a smart phone.
+
+The Little Apps
+
+## Coding
+
+Infrastructure: a browser. Need a tablet+-sized screen and a keyboard.
+
+RStudio tutorials
+
+## Blank canvas
+
+Reproducible tools: Rmd
+
+ 
+

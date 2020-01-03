@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 More aspects to data science | Stats for Data Science</title>
+  <meta name="description" content="Notes for the JMM 2020 workshop." />
+  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 More aspects to data science | Stats for Data Science" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Notes for the JMM 2020 workshop." />
+  <meta name="github-repo" content="dtkaplan/jmm2020" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 More aspects to data science | Stats for Data Science" />
+  
+  <meta name="twitter:description" content="Notes for the JMM 2020 workshop." />
+  
+
+<meta name="author" content="Daniel Kaplan" />
+
+
+<meta name="date" content="2020-01-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="causality-and-decision-making.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Stats for Data Science</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Orientation</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#objective"><i class="fa fa-check"></i>Objective</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#the-new-elements"><i class="fa fa-check"></i>The new elements …</a></li>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#computing"><i class="fa fa-check"></i><b>0.1</b> Computing</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#jmm-2020-abstract"><i class="fa fa-check"></i>JMM 2020 Abstract</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i>Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="stats-and-data-science.html"><a href="stats-and-data-science.html"><i class="fa fa-check"></i><b>1</b> Stats and Data Science</a><ul>
+<li class="chapter" data-level="1.1" data-path="stats-and-data-science.html"><a href="stats-and-data-science.html#the-parable-of-the-highway."><i class="fa fa-check"></i><b>1.1</b> The parable of the highway.</a></li>
+<li class="chapter" data-level="1.2" data-path="stats-and-data-science.html"><a href="stats-and-data-science.html#whats-different-about-data-science"><i class="fa fa-check"></i><b>1.2</b> What’s different about data science?</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="core-statistical-tools.html"><a href="core-statistical-tools.html"><i class="fa fa-check"></i><b>2</b> Core statistical tools</a><ul>
+<li class="chapter" data-level="2.1" data-path="core-statistical-tools.html"><a href="core-statistical-tools.html#graphics"><i class="fa fa-check"></i><b>2.1</b> Graphics</a></li>
+<li class="chapter" data-level="2.2" data-path="core-statistical-tools.html"><a href="core-statistical-tools.html#models-and-effect-sizes"><i class="fa fa-check"></i><b>2.2</b> Models and effect sizes</a></li>
+<li class="chapter" data-level="2.3" data-path="core-statistical-tools.html"><a href="core-statistical-tools.html#variance"><i class="fa fa-check"></i><b>2.3</b> Variance</a></li>
+<li class="chapter" data-level="2.4" data-path="core-statistical-tools.html"><a href="core-statistical-tools.html#basic-discernibility"><i class="fa fa-check"></i><b>2.4</b> Basic discernibility</a></li>
+<li class="chapter" data-level="2.5" data-path="core-statistical-tools.html"><a href="core-statistical-tools.html#confidence-intervals-when-circcal-f-1"><i class="fa fa-check"></i><b>2.5</b> Confidence intervals (when <span class="math inline">\(^\circ\!{\cal F} = 1\)</span>)</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="computation.html"><a href="computation.html"><i class="fa fa-check"></i><b>3</b> Computation</a><ul>
+<li class="chapter" data-level="3.1" data-path="computation.html"><a href="computation.html#no-coding"><i class="fa fa-check"></i><b>3.1</b> No coding</a></li>
+<li class="chapter" data-level="3.2" data-path="computation.html"><a href="computation.html#coding"><i class="fa fa-check"></i><b>3.2</b> Coding</a></li>
+<li class="chapter" data-level="3.3" data-path="computation.html"><a href="computation.html#blank-canvas"><i class="fa fa-check"></i><b>3.3</b> Blank canvas</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="bayes-and-decision-making.html"><a href="bayes-and-decision-making.html"><i class="fa fa-check"></i><b>4</b> Bayes (and decision making)</a></li>
+<li class="chapter" data-level="5" data-path="machine-learning.html"><a href="machine-learning.html"><i class="fa fa-check"></i><b>5</b> Machine learning</a></li>
+<li class="chapter" data-level="6" data-path="causality-and-decision-making.html"><a href="causality-and-decision-making.html"><i class="fa fa-check"></i><b>6</b> Causality (and decision making)</a></li>
+<li class="chapter" data-level="7" data-path="more-aspects-to-data-science.html"><a href="more-aspects-to-data-science.html"><i class="fa fa-check"></i><b>7</b> More aspects to data science</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">JMM 2020 Workshop</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Stats for Data Science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="more-aspects-to-data-science" class="section level1">
+<h1><span class="header-section-number">Chapter 7</span> More aspects to data science</h1>
+<p>Data science is not merely a <em>rebranding</em> of statistics.</p>
+<p>The scenario where statisticians would have come to lead the development of data science is plausible, but historically computer scientists and people from fields such as genetics, marketing, public health, medicine, remote sensing, etc. have played crucial roles.</p>
+<p>Whether or not data science ought to be considered part of the mathematical sciences, any genuine approach should be fundamentally based in realistic applications and the actual kinds of problems–especially decision making–that data science is used to address.</p>
+<p>For concise introductions to wrangling and visualization, see <em><a href="http://moderndive.com/">Statistical Inference via Data Science</a></em> by Chester Ismay and Albert Y. Kim or <em><a href="https://dtkaplan.github.io/DataComputingEbook/">Data Computing</a></em> by Daniel Kaplan and Matthew Beckman.</p>
+<p>I don’t know of a concise introduction to <em>decision making</em> from the statistics, mathematics, or computer science perspectives. (Please tell me if you do know of one!) But if you are willing to wade into the business literature, you would do well with <em><a href="https://www.amazon.com/How-Measure-Anything-Intangibles-Business-ebook/dp/B00INUYS2U/ref=pd_sim_351_1/130-1891063-4524949?_encoding=UTF8&amp;pd_rd_i=B00INUYS2U&amp;pd_rd_r=32024490-cad3-4711-b83a-f50cd25fc381&amp;pd_rd_w=sZwy1&amp;pd_rd_wg=z8fga&amp;pf_rd_p=04d27813-a1f2-4e7b-a32b-b5ab374ce3f9&amp;pf_rd_r=JBWKKZ2FBZT91HD87EZD&amp;psc=1&amp;refRID=JBWKKZ2FBZT91HD87EZD">How to Measure Anything</a></em> by Douglas Hubbard. It even has a <a href="https://www.amazon.com/How-Measure-Anything-Workbook-Intangibles-ebook/dp/B00IPG7CH0/ref=pd_sim_351_1/130-1891063-4524949?_encoding=UTF8&amp;pd_rd_i=B00IPG7CH0&amp;pd_rd_r=3ba15b27-45a9-4c39-bf5c-7155fcf0bca2&amp;pd_rd_w=npc9z&amp;pd_rd_wg=JdiFD&amp;pf_rd_p=04d27813-a1f2-4e7b-a32b-b5ab374ce3f9&amp;pf_rd_r=3ARMRY192FZ343N2J0DB&amp;psc=1&amp;refRID=3ARMRY192FZ343N2J0DB">workbook</a>.</p>
+
+</div>
+
+
+
+
+
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="causality-and-decision-making.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/dtkaplan/jmm-2020/edit/master/07-data-science.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["JMM-2020.pdf", "JMM-2020.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,12 @@
+# More aspects to data science
+
+Data science is not merely a *rebranding* of statistics.
+
+The scenario where statisticians would have come to lead the development of data science is plausible, but historically computer scientists and people from fields such as genetics, marketing, public health, medicine, remote sensing, etc. have played crucial roles.
+
+Whether or not data science ought to be considered part of the mathematical sciences, any genuine approach should be fundamentally based in realistic applications and the actual kinds of problems--especially decision making--that data science is used to address.
+
+For concise introductions to wrangling and visualization, see *[Statistical Inference via Data Science](http://moderndive.com/)* by Chester Ismay and Albert Y. Kim or *[Data Computing](https://dtkaplan.github.io/DataComputingEbook/)* by Daniel Kaplan and Matthew Beckman.
+
+I don't know of a concise introduction to *decision making* from the statistics, mathematics, or computer science perspectives. (Please tell me if you do know of one!) But if you are willing to wade into the business literature, you would do well with *[How to Measure Anything](https://www.amazon.com/How-Measure-Anything-Intangibles-Business-ebook/dp/B00INUYS2U/ref=pd_sim_351_1/130-1891063-4524949?_encoding=UTF8&pd_rd_i=B00INUYS2U&pd_rd_r=32024490-cad3-4711-b83a-f50cd25fc381&pd_rd_w=sZwy1&pd_rd_wg=z8fga&pf_rd_p=04d27813-a1f2-4e7b-a32b-b5ab374ce3f9&pf_rd_r=JBWKKZ2FBZT91HD87EZD&psc=1&refRID=JBWKKZ2FBZT91HD87EZD)* by Douglas Hubbard. It even has a [workbook](https://www.amazon.com/How-Measure-Anything-Workbook-Intangibles-ebook/dp/B00IPG7CH0/ref=pd_sim_351_1/130-1891063-4524949?_encoding=UTF8&pd_rd_i=B00IPG7CH0&pd_rd_r=3ba15b27-45a9-4c39-bf5c-7155fcf0bca2&pd_rd_w=npc9z&pd_rd_wg=JdiFD&pf_rd_p=04d27813-a1f2-4e7b-a32b-b5ab374ce3f9&pf_rd_r=3ARMRY192FZ343N2J0DB&psc=1&refRID=3ARMRY192FZ343N2J0DB). 
+
