@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 7 Bayes (and decision making) | Stats for Data Science</title>
+  <title>Chapter 6 Generalizing Inference | Stats for Data Science</title>
   <meta name="description" content="Notes for the JMM 2020 workshop." />
   <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 7 Bayes (and decision making) | Stats for Data Science" />
+  <meta property="og:title" content="Chapter 6 Generalizing Inference | Stats for Data Science" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="dtkaplan/jmm2020" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 7 Bayes (and decision making) | Stats for Data Science" />
+  <meta name="twitter:title" content="Chapter 6 Generalizing Inference | Stats for Data Science" />
   
   <meta name="twitter:description" content="Notes for the JMM 2020 workshop." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="generalizing-inference.html"/>
-<link rel="next" href="machine-learning.html"/>
+<link rel="prev" href="models-and-effect-sizes.html"/>
+<link rel="next" href="bayes-and-decision-making.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -189,17 +189,97 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="bayes-and-decision-making" class="section level1">
-<h1><span class="header-section-number">Chapter 7</span> Bayes (and decision making)</h1>
+<div id="generalizing-inference" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> Generalizing Inference</h1>
+<div id="variance-how-much-variation" class="section level2">
+<h2><span class="header-section-number">6.1</span> Variance: How much variation?</h2>
+<p>Average pairwise square differences between values.</p>
+<p><span class="math display">\[\frac{1}{n (n-1)}\sum_{i \neq j} |x_i - x_j|^2 = 2\  \mbox{Var}(x)\]</span></p>
+</div>
+<div id="model-values-how-much-has-been-explained" class="section level2">
+<h2><span class="header-section-number">6.2</span> Model values: How much has been explained?</h2>
+<p>Pictures of model values and their variances compared to that of the response variable.</p>
+<p>Exercise: What is the variance of the response and of the model values?</p>
+</div>
+<div id="basic-discernibility" class="section level2">
+<h2><span class="header-section-number">6.3</span> Basic discernibility</h2>
+<p>Note that I’m being much more mathy here than I would in teaching a typical class. The audience here is professional mathematicians, hence likely not too scared by algebraic notation.</p>
+<ol style="list-style-type: decimal">
+<li>Is there any discernible relationship between the response and explanatory variables revealed by the model?
+<ul>
+<li>Inputs from the model: <span class="math inline">\(v_r\)</span>, <span class="math inline">\(v_m\)</span>, <span class="math inline">\(n\)</span>, and degrees of flexibility <span class="math inline">\(^\circ{\cal F}\)</span></li>
+<li>Output:
+<span class="math display">\[\mbox{F} = \frac{n - (^\circ{\cal F} + 1)}{^\circ{\cal F}} \frac{v_m}{v_r - v_m}\]</span></li>
+<li>Interpretation: Is F <span class="math inline">\(\gtrapprox 4\)</span>?. Then a relationship is discernible.</li>
+</ul></li>
+<li>Given a <em>base</em> model and a proposed <em>elaboration</em> of that model, does the elaboration reveal new aspects of the relationship between the response and explanatory variables?
+<ul>
+<li>Inputs from the model:
+<ul>
+<li><span class="math inline">\(v_r\)</span> and <span class="math inline">\(n\)</span></li>
+<li><span class="math inline">\(v_m^{base}\)</span> and <span class="math inline">\(v_m^{elab}\)</span>,</li>
+<li>degrees of flexibility <span class="math inline">\(^\circ\!{\cal F}^{base}\)</span> and <span class="math inline">\(^\circ\!{\cal F}^{elab}\)</span></li>
+</ul></li>
+<li>Output:</li>
+</ul>
+<span class="math display">\[\Delta \mbox{F} = \frac{n - (^\circ\!{\cal F}^{elab} + 1)}{^\circ\!{\cal F}^{elab} - ^\circ\!{\cal F}^{base}}  \cdot \frac{v_m^{elab} - v_m^{base}}{v_r - v_m^{elab}}\]</span>
+<ul>
+<li><p>Interpretation: Is <span class="math inline">\(\Delta\)</span>F <span class="math inline">\(\gtrapprox 4\)</span>? Then a relationship is <em>discernible</em>.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p></li>
+<li>Notes:
+<ul>
+<li>The special case of a model with <span class="math inline">\(^\circ{\cal F} = 0\)</span> is called the <em>Null Model</em> and corresponds to the claim that there is no relationship between the explanatory variables and the response variable. In this special case, <span class="math inline">\(\mbox{F} = \Delta \mbox{F}\)</span>.</li>
+<li><span class="math inline">\(\Delta \mbox{F} \neq \mbox{F}^{elab} - \mbox{F}^{base}\)</span></li>
+</ul></li>
+</ul></li>
+</ol>
+</div>
+<div id="confidence-intervals-when-circcal-f-1" class="section level2">
+<h2><span class="header-section-number">6.4</span> Confidence intervals (when <span class="math inline">\(^\circ\!{\cal F} = 1\)</span>)</h2>
+<p>When <span class="math inline">\(^\circ\!{\cal F} = 1\)</span>, there is only one explanatory variable and the modeling situation is one of these:</p>
+<ul>
+<li>difference between two groups</li>
+<li>slope of a regression line</li>
+</ul>
+<p>Either way, there is only one effect size: the difference or slope.</p>
+<ul>
+<li>Inputs:
+<ul>
+<li>Effect size B</li>
+<li>F</li>
+</ul></li>
+<li>Output:
+<ul>
+<li>Margin of error is <span class="math inline">\(\pm \mbox{B} \sqrt{4 / \mbox{F}}\)</span></li>
+</ul></li>
+<li>Interpretation:
+<ul>
+<li>We wouldn’t be at all surprised if a much, much bigger study revealed an effect size within the confidence interval. - If we are comparing our study to another study, we’re only justified in claiming a contradiction when the two confidence intervals don’t overlap.</li>
+<li>Do we really need to refer to populations?</li>
+</ul></li>
+</ul>
+<p>Note that when <span class="math inline">\(^\circ\!{\cal F} \geq 2\)</span>, there is either more than one explanatory variable or more than one group in that explanatory variable or a non-straight-line regression (e.g. a polynomial). In none of these cases can the margin of error be deduced directly from F due to one or more of:</p>
+<ul>
+<li>effect size not constant</li>
+<li>multiple effect sizes</li>
+<li>collinearity among explanatory variables</li>
+</ul>
+<p>Instead of the simple formula based on F, confidence intervals can be based on a regression table or bootstrapping.</p>
 
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="3">
+<li id="fn3"><p>Recall that I’m using <em>discernible</em> as a replacement for <em>significant</em>, as proposed by Jeff Witmer.<a href="generalizing-inference.html#fnref3" class="footnote-back">↩</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="generalizing-inference.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="machine-learning.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="models-and-effect-sizes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bayes-and-decision-making.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -231,7 +311,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/dtkaplan/jmm-2020/edit/master/05-bayes.Rmd",
+"link": "https://github.com/dtkaplan/jmm-2020/edit/master/04-inference.Rmd",
 "text": "Edit"
 },
 "history": {

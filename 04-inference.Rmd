@@ -1,0 +1,65 @@
+# Generalizing Inference
+
+## Variance: How much variation?
+
+Average pairwise square differences between values.
+
+$$\frac{1}{n (n-1)}\sum_{i \neq j} |x_i - x_j|^2 = 2\  \mbox{Var}(x)$$
+
+## Model values: How much has been explained?
+
+Pictures of model values and their variances compared to that of the response variable.
+
+Exercise: What is the variance of  the response and of the model values?
+
+
+## Basic discernibility
+
+Note that I'm being much more mathy here than I would in teaching a typical class. The audience here is professional mathematicians, hence likely not too scared by algebraic notation.
+
+1. Is there any discernible relationship between the response and explanatory variables revealed by the model?
+    - Inputs from the model: $v_r$, $v_m$, $n$, and degrees of flexibility $^\circ{\cal F}$
+    - Output:
+$$\mbox{F} = \frac{n - (^\circ{\cal F} + 1)}{^\circ{\cal F}} \frac{v_m}{v_r - v_m}$$
+    - Interpretation: Is F $\gtrapprox 4$?. Then a relationship is discernible.
+
+
+2. Given a *base* model and a proposed *elaboration* of that model, does the elaboration reveal new aspects of the relationship between the response and explanatory variables?
+    - Inputs from the model:
+        - $v_r$ and $n$
+        - $v_m^{base}$ and $v_m^{elab}$,
+        - degrees of flexibility $^\circ\!{\cal F}^{base}$ and $^\circ\!{\cal F}^{elab}$
+    - Output:
+
+    $$\Delta \mbox{F} = \frac{n - (^\circ\!{\cal F}^{elab} + 1)}{^\circ\!{\cal F}^{elab} - ^\circ\!{\cal F}^{base}}  \cdot \frac{v_m^{elab} - v_m^{base}}{v_r - v_m^{elab}}$$
+    - Interpretation: Is $\Delta$F $\gtrapprox 4$? Then a relationship is *discernible*.^[Recall that I'm using *discernible* as a replacement for *significant*, as proposed by Jeff Witmer.]
+
+    - Notes:
+        - The special case of a model with $^\circ{\cal F} = 0$ is called the *Null Model* and corresponds to the claim that there is no relationship between the explanatory variables and the response variable. In this special case, $\mbox{F} = \Delta \mbox{F}$.
+        - $\Delta \mbox{F} \neq \mbox{F}^{elab} - \mbox{F}^{base}$
+
+## Confidence intervals (when $^\circ\!{\cal F} = 1$)
+
+When $^\circ\!{\cal F} = 1$, there is only one explanatory variable and the modeling situation is one of these:
+
+- difference between two groups
+- slope of a regression line
+
+Either way, there is only one effect size: the difference or slope.
+
+- Inputs:
+    - Effect size B
+    - F
+- Output:
+    - Margin of error is $\pm \mbox{B} \sqrt{4 / \mbox{F}}$
+- Interpretation:
+    - We wouldn't be at all surprised if a much, much bigger study revealed an effect size within the confidence interval.     - If we are comparing our study to another study, we're only justified in claiming a contradiction when the two confidence intervals don't overlap.
+    - Do we really need to refer to populations?
+
+Note that when $^\circ\!{\cal F} \geq 2$, there is either more than one explanatory variable or more than one group in that explanatory variable or a non-straight-line regression (e.g. a polynomial). In none of these cases can the margin of error be deduced directly from F due to one or more of:
+
+- effect size not constant
+- multiple effect sizes
+- collinearity among explanatory variables
+
+Instead of the simple formula based on F, confidence intervals can be based on a regression table or bootstrapping.

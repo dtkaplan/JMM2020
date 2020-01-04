@@ -1,0 +1,8 @@
+# Models and effect sizes
+
+Summarizing a relationship with a function
+
+We'll start with models with a single *degree of flexibility*, that is $^\circ{\cal F} = 1$. This includes all the settings covered in most introductory stats courses.
+
+Degrees of flexibility more generally. Explain why "degrees of freedom" is harder than degress of flexibility. You can count degrees of flexibility.
+

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 Machine learning | Stats for Data Science</title>
+  <title>Chapter 8 Machine learning | Stats for Data Science</title>
   <meta name="description" content="Notes for the JMM 2020 workshop." />
   <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 Machine learning | Stats for Data Science" />
+  <meta property="og:title" content="Chapter 8 Machine learning | Stats for Data Science" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="dtkaplan/jmm2020" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Machine learning | Stats for Data Science" />
+  <meta name="twitter:title" content="Chapter 8 Machine learning | Stats for Data Science" />
   
   <meta name="twitter:description" content="Notes for the JMM 2020 workshop." />
   
@@ -52,6 +52,68 @@
 
 
 
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -72,7 +134,7 @@
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Orientation</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#objective"><i class="fa fa-check"></i>Objective</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#the-new-elements"><i class="fa fa-check"></i>The new elements …</a></li>
-<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#computing"><i class="fa fa-check"></i><b>0.1</b> Computing</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#computing"><i class="fa fa-check"></i>Computing</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#jmm-2020-abstract"><i class="fa fa-check"></i>JMM 2020 Abstract</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i>Resources</a></li>
 </ul></li>
@@ -80,22 +142,33 @@
 <li class="chapter" data-level="1.1" data-path="stats-and-data-science.html"><a href="stats-and-data-science.html#the-parable-of-the-highway."><i class="fa fa-check"></i><b>1.1</b> The parable of the highway.</a></li>
 <li class="chapter" data-level="1.2" data-path="stats-and-data-science.html"><a href="stats-and-data-science.html#whats-different-about-data-science"><i class="fa fa-check"></i><b>1.2</b> What’s different about data science?</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="core-statistical-tools.html"><a href="core-statistical-tools.html"><i class="fa fa-check"></i><b>2</b> Core statistical tools</a><ul>
-<li class="chapter" data-level="2.1" data-path="core-statistical-tools.html"><a href="core-statistical-tools.html#graphics"><i class="fa fa-check"></i><b>2.1</b> Graphics</a></li>
-<li class="chapter" data-level="2.2" data-path="core-statistical-tools.html"><a href="core-statistical-tools.html#models-and-effect-sizes"><i class="fa fa-check"></i><b>2.2</b> Models and effect sizes</a></li>
-<li class="chapter" data-level="2.3" data-path="core-statistical-tools.html"><a href="core-statistical-tools.html#variance"><i class="fa fa-check"></i><b>2.3</b> Variance</a></li>
-<li class="chapter" data-level="2.4" data-path="core-statistical-tools.html"><a href="core-statistical-tools.html#basic-discernibility"><i class="fa fa-check"></i><b>2.4</b> Basic discernibility</a></li>
-<li class="chapter" data-level="2.5" data-path="core-statistical-tools.html"><a href="core-statistical-tools.html#confidence-intervals-when-circcal-f-1"><i class="fa fa-check"></i><b>2.5</b> Confidence intervals (when <span class="math inline">\(^\circ\!{\cal F} = 1\)</span>)</a></li>
+<li class="chapter" data-level="2" data-path="core-statistical-tools.html"><a href="core-statistical-tools.html"><i class="fa fa-check"></i><b>2</b> Core statistical tools</a></li>
+<li class="chapter" data-level="3" data-path="graphics.html"><a href="graphics.html"><i class="fa fa-check"></i><b>3</b> Graphics</a><ul>
+<li class="chapter" data-level="3.1" data-path="graphics.html"><a href="graphics.html#graphical-confusion-an-introductory-activity"><i class="fa fa-check"></i><b>3.1</b> Graphical confusion: An introductory activity</a></li>
+<li class="chapter" data-level="3.2" data-path="graphics.html"><a href="graphics.html#a-simplifying-proposal"><i class="fa fa-check"></i><b>3.2</b> A simplifying proposal</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="graphics.html"><a href="graphics.html#data-layer"><i class="fa fa-check"></i><b>3.2.1</b> Data Layer</a></li>
+<li class="chapter" data-level="3.2.2" data-path="graphics.html"><a href="graphics.html#model-layer"><i class="fa fa-check"></i><b>3.2.2</b> Model layer</a></li>
+<li class="chapter" data-level="3.2.3" data-path="graphics.html"><a href="graphics.html#interval-layer"><i class="fa fa-check"></i><b>3.2.3</b> Interval layer</a></li>
+<li class="chapter" data-level="3.2.4" data-path="graphics.html"><a href="graphics.html#density-layer"><i class="fa fa-check"></i><b>3.2.4</b> Density layer</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="computation.html"><a href="computation.html"><i class="fa fa-check"></i><b>3</b> Computation</a><ul>
-<li class="chapter" data-level="3.1" data-path="computation.html"><a href="computation.html#no-coding"><i class="fa fa-check"></i><b>3.1</b> No coding</a></li>
-<li class="chapter" data-level="3.2" data-path="computation.html"><a href="computation.html#coding"><i class="fa fa-check"></i><b>3.2</b> Coding</a></li>
-<li class="chapter" data-level="3.3" data-path="computation.html"><a href="computation.html#blank-canvas"><i class="fa fa-check"></i><b>3.3</b> Blank canvas</a></li>
+<li class="chapter" data-level="3.3" data-path="graphics.html"><a href="graphics.html#exercises"><i class="fa fa-check"></i><b>3.3</b> EXERCISES:</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="bayes-and-decision-making.html"><a href="bayes-and-decision-making.html"><i class="fa fa-check"></i><b>4</b> Bayes (and decision making)</a></li>
-<li class="chapter" data-level="5" data-path="machine-learning.html"><a href="machine-learning.html"><i class="fa fa-check"></i><b>5</b> Machine learning</a></li>
-<li class="chapter" data-level="6" data-path="causality-and-decision-making.html"><a href="causality-and-decision-making.html"><i class="fa fa-check"></i><b>6</b> Causality (and decision making)</a></li>
-<li class="chapter" data-level="7" data-path="more-aspects-to-data-science.html"><a href="more-aspects-to-data-science.html"><i class="fa fa-check"></i><b>7</b> More aspects to data science</a></li>
+<li class="chapter" data-level="4" data-path="computation.html"><a href="computation.html"><i class="fa fa-check"></i><b>4</b> Computation</a><ul>
+<li class="chapter" data-level="4.1" data-path="computation.html"><a href="computation.html#no-coding"><i class="fa fa-check"></i><b>4.1</b> No coding</a></li>
+<li class="chapter" data-level="4.2" data-path="computation.html"><a href="computation.html#coding"><i class="fa fa-check"></i><b>4.2</b> Coding</a></li>
+<li class="chapter" data-level="4.3" data-path="computation.html"><a href="computation.html#blank-canvas"><i class="fa fa-check"></i><b>4.3</b> Blank canvas</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="models-and-effect-sizes.html"><a href="models-and-effect-sizes.html"><i class="fa fa-check"></i><b>5</b> Models and effect sizes</a></li>
+<li class="chapter" data-level="6" data-path="generalizing-inference.html"><a href="generalizing-inference.html"><i class="fa fa-check"></i><b>6</b> Generalizing Inference</a><ul>
+<li class="chapter" data-level="6.1" data-path="generalizing-inference.html"><a href="generalizing-inference.html#variance-how-much-variation"><i class="fa fa-check"></i><b>6.1</b> Variance: How much variation?</a></li>
+<li class="chapter" data-level="6.2" data-path="generalizing-inference.html"><a href="generalizing-inference.html#model-values-how-much-has-been-explained"><i class="fa fa-check"></i><b>6.2</b> Model values: How much has been explained?</a></li>
+<li class="chapter" data-level="6.3" data-path="generalizing-inference.html"><a href="generalizing-inference.html#basic-discernibility"><i class="fa fa-check"></i><b>6.3</b> Basic discernibility</a></li>
+<li class="chapter" data-level="6.4" data-path="generalizing-inference.html"><a href="generalizing-inference.html#confidence-intervals-when-circcal-f-1"><i class="fa fa-check"></i><b>6.4</b> Confidence intervals (when <span class="math inline">\(^\circ\!{\cal F} = 1\)</span>)</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="bayes-and-decision-making.html"><a href="bayes-and-decision-making.html"><i class="fa fa-check"></i><b>7</b> Bayes (and decision making)</a></li>
+<li class="chapter" data-level="8" data-path="machine-learning.html"><a href="machine-learning.html"><i class="fa fa-check"></i><b>8</b> Machine learning</a></li>
+<li class="chapter" data-level="9" data-path="causality-and-decision-making.html"><a href="causality-and-decision-making.html"><i class="fa fa-check"></i><b>9</b> Causality (and decision making)</a></li>
+<li class="chapter" data-level="10" data-path="more-aspects-to-data-science.html"><a href="more-aspects-to-data-science.html"><i class="fa fa-check"></i><b>10</b> More aspects to data science</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">JMM 2020 Workshop</a></li>
 
@@ -117,7 +190,7 @@
 
             <section class="normal" id="section-">
 <div id="machine-learning" class="section level1">
-<h1><span class="header-section-number">Chapter 5</span> Machine learning</h1>
+<h1><span class="header-section-number">Chapter 8</span> Machine learning</h1>
 <p>Cross validation</p>
 <p>Bootstrapping</p>
 
@@ -160,7 +233,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/dtkaplan/jmm-2020/edit/master/05-machine-learning.Rmd",
+"link": "https://github.com/dtkaplan/jmm-2020/edit/master/06-machine-learning.Rmd",
 "text": "Edit"
 },
 "history": {

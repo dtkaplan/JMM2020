@@ -1,0 +1,147 @@
+# Graphics
+
+```{r include=FALSE}
+library(ggformula)
+library(mosaic)
+library(NHANES)
+library(mosaicModel)
+```
+
+## Graphical confusion: An introductory activity
+
+Introductory statistics courses conventionally feature many types of graphics, e.g. histograms, stem-and-leaf plots, theoretical probability densities (often with tail probabilities annotated), bar charts, scatter plots, cross-tabulations, ...
+
+The graphics in this table come from a nice, open-source textbook: [OpenIntro Stats](https://www.openintro.org/book/os/) (4/e). This book is used successfully in  many colleges, ranging  from  two-year colleges to elite,  private, four-year schools. I paged through the book, capturing each new mode as I encountered it.
+
+As you look  through the collection, note how often ...
+
+a. it's readily evident what a single "unit of observation" is.
+b. the axes correspond to a data variable
+c. one or another of the axes is not identified at all or the scale of the axis can be  safely ignored.
+d. similar glyphs are used for completely different purposes
+
+
+Image modalities from | [OpenIntro Stats](https://www.openintro.org/book/os/)
+----------------------|------------
+![](images/openintro/annotated-density-p-141.png) | ![](images/openintro/bar-plot-p-62.png)
+![](images/openintro/box-and-whisker-p-49.pdf)    | ![](images/openintro/compare-densities-p-68.png)
+![](images/openintro/coverage-p-182.png)          | ![](images/openintro/cross-tab-p-11.png)
+![](images/openintro/cumulative-p-373.png)        | ![](images/openintro/density-p-133.png)
+![](images/openintro/dot-plot-p-42.png)           | ![](images/openintro/dot-plot-p-43.png)
+![](images/openintro/histogram.png)               | ![](images/openintro/mosaic-plot-p-65.png)
+![](images/openintro/prob-vs-n-p-82.png)          | ![](images/openintro/regression-line-p-317.png)
+![](images/openintro/scatter-plot-p-11.png)       | ![](images/openintro/stacked-bar-chart-p-64.png)
+Not from Open Intro | Not from Open Intro
+![](images/openintro/not-open-intro-CI.jpg) | ![](images/openintro/not-open-intro-conf-band.jpg)
+
+## A simplifying proposal
+
+Let's reduce the number of graphical modes arranging things so ...
+
+1. "Raw" data can be expected to be shown in a graphic.
+2. Each axis is always a variable, and the y axis is  consistently used to display a response variable.
+3. The kind of glyph unequivocally identifies what is being displayed.
+
+```{r echo=FALSE}
+NHANES <- NHANES::NHANES %>%
+    select(Age, Height, HomeOwn, Depressed,
+           Poverty, Work) %>%
+    na.omit()
+```
+
+### Data Layer
+
+* The frame is something  like this:
+
+```{r}
+gf_blank(Height ~ Age, data = NHANES)
+gf_blank(Poverty ~ HomeOwn,  data = NHANES)
+gf_blank(Depressed ~ Work,  data  = NHANES)
+```
+
+* Data is always plotted with a ✺
+* Jittering and transparency are used to deal with overplotting.
+
+```{r}
+gf_point(Height ~ Age, data = NHANES,
+         alpha = 0.3)
+gf_jitter(HomeOwn ~ Poverty,  data = NHANES,
+          alpha = 0.3, height = 0.2)
+gf_jitter(Depressed ~ Work,  data  = NHANES,
+          alpha = 0.1, width = 0.2, height = 0.2)
+```
+
+Adding in color and facetting, up to four variables can be shown, but relationships become progressively more difficult to read.
+
+### Model layer
+
+Glyph is a more-or-less horizontal line or curve
+showing the model output at each value of the explanatory variables.
+
+```{r}
+mod1 <- lm(height ~ ns(mother,2) * sex,
+           data = Galton)
+mod_shape <- mod_eval(mod1,
+                      mother = seq(55,72,length =  100),
+                      interval = "prediction")
+mod_shape2 <- mod_eval(mod1,
+                      mother = seq(55,72,length =  100),
+                      interval = "confidence")
+gf_point(height ~ mother | sex,  data = Galton,
+         alpha = 0.2) %>%
+    gf_line(model_output ~  mother | sex, data =  mod_shape, size = 2)
+```
+
+### Interval layer
+
+Glyph is either a ribbon or an I-bar.
+
+```{r}
+gf_point(height ~ mother | sex,  data = Galton,
+         alpha = 0.2) %>%
+    gf_ribbon(lower + upper ~  mother | sex,
+              data =  mod_shape, alpha  = 0.2,
+              inherit =  FALSE)
+```
+
+Note: In the context provided by the data, it's always clear whether a band is a prediction  interval or a confidence interval.
+
+```{r}
+gf_point(height ~ mother | sex,  data = Galton,
+         alpha = 0.1) %>%
+    gf_ribbon(lower + upper ~  mother | sex,
+              data =  mod_shape2, alpha  = 0.4,
+              inherit =  FALSE)
+```
+
+```{r}
+mod <- lm(Height ~ Depressed, data = NHANES)
+mod_shape <- mod_eval(mod, interval = "prediction")
+
+```
+
+Two distinct questions:
+
+- **Prediction**:  Does knowing the mother's height meaningfully narrow a prediction of the adult child's height?
+- **Description**: Is the mother's height connected  with the adult child's height?
+
+### Density layer
+
+The data points themselves indicate the joint probability density.
+
+Use another glyph to show conditional density: a violin:
+
+```{r}
+gf_jitter(Poverty ~ Depressed,  data = NHANES,
+          alpha = 0.03, width = 0.2) %>%
+    gf_violin(alpha = 0.1, fill  = "black")
+
+```
+
+## EXERCISES:
+
+- Is this a confidence interval or a prediction  interval.
+- For which group is low weight more common  Weight ~ Smoker | Gender?
+- Sketch out density violins.
+- Which of these  tells the story  more clearly:
+Hourly number of rentals versus Time of Day and Client type and Weekday or Hourly number of rentals versus Weekday, Time of Day  (color), and Client  type.

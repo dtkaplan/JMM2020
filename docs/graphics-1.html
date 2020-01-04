@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Graphics | Stats for Data Science</title>
+  <meta name="description" content="Notes for the JMM 2020 workshop." />
+  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Graphics | Stats for Data Science" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Notes for the JMM 2020 workshop." />
+  <meta name="github-repo" content="dtkaplan/jmm2020" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Graphics | Stats for Data Science" />
+  
+  <meta name="twitter:description" content="Notes for the JMM 2020 workshop." />
+  
+
+<meta name="author" content="Daniel Kaplan" />
+
+
+<meta name="date" content="2020-01-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="core-statistical-tools.html"/>
+<link rel="next" href="computation.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Stats for Data Science</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Orientation</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#objective"><i class="fa fa-check"></i>Objective</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#the-new-elements"><i class="fa fa-check"></i>The new elements …</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#computing"><i class="fa fa-check"></i>Computing</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#jmm-2020-abstract"><i class="fa fa-check"></i>JMM 2020 Abstract</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i>Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="stats-and-data-science.html"><a href="stats-and-data-science.html"><i class="fa fa-check"></i><b>1</b> Stats and Data Science</a><ul>
+<li class="chapter" data-level="1.1" data-path="stats-and-data-science.html"><a href="stats-and-data-science.html#the-parable-of-the-highway."><i class="fa fa-check"></i><b>1.1</b> The parable of the highway.</a></li>
+<li class="chapter" data-level="1.2" data-path="stats-and-data-science.html"><a href="stats-and-data-science.html#whats-different-about-data-science"><i class="fa fa-check"></i><b>1.2</b> What’s different about data science?</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="core-statistical-tools.html"><a href="core-statistical-tools.html"><i class="fa fa-check"></i><b>2</b> Core statistical tools</a><ul>
+<li class="chapter" data-level="2.1" data-path="core-statistical-tools.html"><a href="core-statistical-tools.html#graphics"><i class="fa fa-check"></i><b>2.1</b> Graphics</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="core-statistical-tools.html"><a href="core-statistical-tools.html#an-introductory-activity"><i class="fa fa-check"></i><b>2.1.1</b> An introductory activity</a></li>
+<li class="chapter" data-level="2.1.2" data-path="core-statistical-tools.html"><a href="core-statistical-tools.html#a-simplifying-proposal"><i class="fa fa-check"></i><b>2.1.2</b> A simplifying proposal</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="core-statistical-tools.html"><a href="core-statistical-tools.html#models-and-effect-sizes"><i class="fa fa-check"></i><b>2.2</b> Models and effect sizes</a></li>
+<li class="chapter" data-level="2.3" data-path="core-statistical-tools.html"><a href="core-statistical-tools.html#variance"><i class="fa fa-check"></i><b>2.3</b> Variance</a></li>
+<li class="chapter" data-level="2.4" data-path="core-statistical-tools.html"><a href="core-statistical-tools.html#basic-discernibility"><i class="fa fa-check"></i><b>2.4</b> Basic discernibility</a></li>
+<li class="chapter" data-level="2.5" data-path="core-statistical-tools.html"><a href="core-statistical-tools.html#confidence-intervals-when-circcal-f-1"><i class="fa fa-check"></i><b>2.5</b> Confidence intervals (when <span class="math inline">\(^\circ\!{\cal F} = 1\)</span>)</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="graphics-1.html"><a href="graphics-1.html"><i class="fa fa-check"></i><b>3</b> Graphics</a><ul>
+<li class="chapter" data-level="3.1" data-path="graphics-1.html"><a href="graphics-1.html#graphical-confusion-an-introductory-activity"><i class="fa fa-check"></i><b>3.1</b> Graphical confusion: An introductory activity</a></li>
+<li class="chapter" data-level="3.2" data-path="graphics-1.html"><a href="graphics-1.html#a-simplifying-proposal-1"><i class="fa fa-check"></i><b>3.2</b> A simplifying proposal</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="graphics-1.html"><a href="graphics-1.html#data-layer-1"><i class="fa fa-check"></i><b>3.2.1</b> Data Layer</a></li>
+<li class="chapter" data-level="3.2.2" data-path="graphics-1.html"><a href="graphics-1.html#model-layer-1"><i class="fa fa-check"></i><b>3.2.2</b> Model layer</a></li>
+<li class="chapter" data-level="3.2.3" data-path="graphics-1.html"><a href="graphics-1.html#interval-layer-1"><i class="fa fa-check"></i><b>3.2.3</b> Interval layer</a></li>
+<li class="chapter" data-level="3.2.4" data-path="graphics-1.html"><a href="graphics-1.html#density-layer-1"><i class="fa fa-check"></i><b>3.2.4</b> Density layer</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="graphics-1.html"><a href="graphics-1.html#exercises"><i class="fa fa-check"></i><b>3.3</b> EXERCISES:</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="computation.html"><a href="computation.html"><i class="fa fa-check"></i><b>4</b> Computation</a><ul>
+<li class="chapter" data-level="4.1" data-path="computation.html"><a href="computation.html#no-coding"><i class="fa fa-check"></i><b>4.1</b> No coding</a></li>
+<li class="chapter" data-level="4.2" data-path="computation.html"><a href="computation.html#coding"><i class="fa fa-check"></i><b>4.2</b> Coding</a></li>
+<li class="chapter" data-level="4.3" data-path="computation.html"><a href="computation.html#blank-canvas"><i class="fa fa-check"></i><b>4.3</b> Blank canvas</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="bayes-and-decision-making.html"><a href="bayes-and-decision-making.html"><i class="fa fa-check"></i><b>5</b> Bayes (and decision making)</a></li>
+<li class="chapter" data-level="6" data-path="generalizing-inference.html"><a href="generalizing-inference.html"><i class="fa fa-check"></i><b>6</b> Generalizing Inference</a><ul>
+<li class="chapter" data-level="6.1" data-path="generalizing-inference.html"><a href="generalizing-inference.html#variance-how-much-variation"><i class="fa fa-check"></i><b>6.1</b> Variance: How much variation?</a></li>
+<li class="chapter" data-level="6.2" data-path="generalizing-inference.html"><a href="generalizing-inference.html#model-values-how-much-has-been-explained"><i class="fa fa-check"></i><b>6.2</b> Model values: How much has been explained?</a></li>
+<li class="chapter" data-level="6.3" data-path="generalizing-inference.html"><a href="generalizing-inference.html#basic-discernibility-1"><i class="fa fa-check"></i><b>6.3</b> Basic discernibility</a></li>
+<li class="chapter" data-level="6.4" data-path="generalizing-inference.html"><a href="generalizing-inference.html#confidence-intervals-when-circcal-f-1-1"><i class="fa fa-check"></i><b>6.4</b> Confidence intervals (when <span class="math inline">\(^\circ\!{\cal F} = 1\)</span>)</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="machine-learning.html"><a href="machine-learning.html"><i class="fa fa-check"></i><b>7</b> Machine learning</a></li>
+<li class="chapter" data-level="8" data-path="causality-and-decision-making.html"><a href="causality-and-decision-making.html"><i class="fa fa-check"></i><b>8</b> Causality (and decision making)</a></li>
+<li class="chapter" data-level="9" data-path="more-aspects-to-data-science.html"><a href="more-aspects-to-data-science.html"><i class="fa fa-check"></i><b>9</b> More aspects to data science</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">JMM 2020 Workshop</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Stats for Data Science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="graphics-1" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Graphics</h1>
+<div id="graphical-confusion-an-introductory-activity" class="section level2">
+<h2><span class="header-section-number">3.1</span> Graphical confusion: An introductory activity</h2>
+<p>Introductory statistics courses conventionally feature many types of graphics, e.g. histograms, stem-and-leaf plots, theoretical probability densities (often with tail probabilities annotated), bar charts, scatter plots, cross-tabulations, …</p>
+<p>The graphics in this table come from a nice, open-source textbook: <a href="https://www.openintro.org/book/os/">OpenIntro Stats</a> (4/e). This book is used successfully in many colleges, ranging from two-year colleges to elite, private, four-year schools. I paged through the book, capturing each new mode as I encountered it.</p>
+<p>As you look through the collection, note how often …</p>
+<ol style="list-style-type: lower-alpha">
+<li>it’s readily evident what a single “unit of observation” is.</li>
+<li>the axes correspond to a data variable</li>
+<li>one or another of the axes is not identified at all or the scale of the axis can be safely ignored.</li>
+<li>similar glyphs are used for completely different purposes</li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th>Image modalities from</th>
+<th><a href="https://www.openintro.org/book/os/">OpenIntro Stats</a></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="images/openintro/annotated-density-p-141.png" /></td>
+<td><img src="images/openintro/bar-plot-p-62.png" /></td>
+</tr>
+<tr class="even">
+<td><embed src="images/openintro/box-and-whisker-p-49.pdf" /></td>
+<td><img src="images/openintro/compare-densities-p-68.png" /></td>
+</tr>
+<tr class="odd">
+<td><img src="images/openintro/coverage-p-182.png" /></td>
+<td><img src="images/openintro/cross-tab-p-11.png" /></td>
+</tr>
+<tr class="even">
+<td><img src="images/openintro/cumulative-p-373.png" /></td>
+<td><img src="images/openintro/density-p-133.png" /></td>
+</tr>
+<tr class="odd">
+<td><img src="images/openintro/dot-plot-p-42.png" /></td>
+<td><img src="images/openintro/dot-plot-p-43.png" /></td>
+</tr>
+<tr class="even">
+<td><img src="images/openintro/histogram.png" /></td>
+<td><img src="images/openintro/mosaic-plot-p-65.png" /></td>
+</tr>
+<tr class="odd">
+<td><img src="images/openintro/prob-vs-n-p-82.png" /></td>
+<td><img src="images/openintro/regression-line-p-317.png" /></td>
+</tr>
+<tr class="even">
+<td><img src="images/openintro/scatter-plot-p-11.png" /></td>
+<td><img src="images/openintro/stacked-bar-chart-p-64.png" /></td>
+</tr>
+<tr class="odd">
+<td>Not from Open Intro</td>
+<td>Not from Open Intro</td>
+</tr>
+<tr class="even">
+<td><img src="images/openintro/not-open-intro-CI.jpg" /></td>
+<td><img src="images/openintro/not-open-intro-conf-band.jpg" /></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="a-simplifying-proposal-1" class="section level2">
+<h2><span class="header-section-number">3.2</span> A simplifying proposal</h2>
+<p>Let’s reduce the number of graphical modes arranging things so …</p>
+<ol style="list-style-type: decimal">
+<li>“Raw” data can be expected to be shown in a graphic.</li>
+<li>Each axis is always a variable, and the y axis is consistently used to display a response variable.</li>
+<li>The kind of glyph unequivocally identifies what is being displayed.</li>
+</ol>
+<div id="data-layer-1" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Data Layer</h3>
+<ul>
+<li>The frame is something like this:</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">gf_blank</span>(Height <span class="op">~</span><span class="st"> </span>Age, <span class="dt">data =</span> NHANES)</a></code></pre></div>
+<p><img src="JMM-2020_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">gf_blank</span>(Poverty <span class="op">~</span><span class="st"> </span>HomeOwn,  <span class="dt">data =</span> NHANES)</a></code></pre></div>
+<p><img src="JMM-2020_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">gf_blank</span>(Depressed <span class="op">~</span><span class="st"> </span>Work,  <span class="dt">data  =</span> NHANES)</a></code></pre></div>
+<p><img src="JMM-2020_files/figure-html/unnamed-chunk-3-3.png" width="672" /></p>
+<ul>
+<li>Data is always plotted with a ✺</li>
+<li>Jittering and transparency are used to deal with overplotting.</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">gf_point</span>(Height <span class="op">~</span><span class="st"> </span>Age, <span class="dt">data =</span> NHANES,</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">         <span class="dt">alpha =</span> <span class="fl">0.3</span>)</a></code></pre></div>
+<p><img src="JMM-2020_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">gf_jitter</span>(HomeOwn <span class="op">~</span><span class="st"> </span>Poverty,  <span class="dt">data =</span> NHANES,</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">          <span class="dt">alpha =</span> <span class="fl">0.3</span>, <span class="dt">height =</span> <span class="fl">0.2</span>)</a></code></pre></div>
+<p><img src="JMM-2020_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">gf_jitter</span>(Depressed <span class="op">~</span><span class="st"> </span>Work,  <span class="dt">data  =</span> NHANES,</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">          <span class="dt">alpha =</span> <span class="fl">0.1</span>, <span class="dt">width =</span> <span class="fl">0.2</span>, <span class="dt">height =</span> <span class="fl">0.2</span>)</a></code></pre></div>
+<p><img src="JMM-2020_files/figure-html/unnamed-chunk-4-3.png" width="672" /></p>
+<p>Adding in color and facetting, up to four variables can be shown, but relationships become progressively more difficult to read.</p>
+</div>
+<div id="model-layer-1" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> Model layer</h3>
+<p>Glyph is a more-or-less horizontal line or curve
+showing the model output at each value of the explanatory variables.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">mod1 &lt;-<span class="st"> </span><span class="kw">lm</span>(height <span class="op">~</span><span class="st"> </span><span class="kw">ns</span>(mother,<span class="dv">2</span>) <span class="op">*</span><span class="st"> </span>sex,</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">           <span class="dt">data =</span> Galton)</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">mod_shape &lt;-<span class="st"> </span><span class="kw">mod_eval</span>(mod1,</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">                      <span class="dt">mother =</span> <span class="kw">seq</span>(<span class="dv">55</span>,<span class="dv">72</span>,<span class="dt">length =</span>  <span class="dv">100</span>),</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5">                      <span class="dt">interval =</span> <span class="st">&quot;prediction&quot;</span>)</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6">mod_shape2 &lt;-<span class="st"> </span><span class="kw">mod_eval</span>(mod1,</a>
+<a class="sourceLine" id="cb7-7" data-line-number="7">                      <span class="dt">mother =</span> <span class="kw">seq</span>(<span class="dv">55</span>,<span class="dv">72</span>,<span class="dt">length =</span>  <span class="dv">100</span>),</a>
+<a class="sourceLine" id="cb7-8" data-line-number="8">                      <span class="dt">interval =</span> <span class="st">&quot;confidence&quot;</span>)</a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="kw">gf_point</span>(height <span class="op">~</span><span class="st"> </span>mother <span class="op">|</span><span class="st"> </span>sex,  <span class="dt">data =</span> Galton,</a>
+<a class="sourceLine" id="cb7-10" data-line-number="10">         <span class="dt">alpha =</span> <span class="fl">0.2</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="st">    </span><span class="kw">gf_line</span>(model_output <span class="op">~</span><span class="st">  </span>mother <span class="op">|</span><span class="st"> </span>sex, <span class="dt">data =</span>  mod_shape, <span class="dt">size =</span> <span class="dv">2</span>)</a></code></pre></div>
+<p><img src="JMM-2020_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+<div id="interval-layer-1" class="section level3">
+<h3><span class="header-section-number">3.2.3</span> Interval layer</h3>
+<p>Glyph is either a ribbon or an I-bar.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">gf_point</span>(height <span class="op">~</span><span class="st"> </span>mother <span class="op">|</span><span class="st"> </span>sex,  <span class="dt">data =</span> Galton,</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">         <span class="dt">alpha =</span> <span class="fl">0.2</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="st">    </span><span class="kw">gf_ribbon</span>(lower <span class="op">+</span><span class="st"> </span>upper <span class="op">~</span><span class="st">  </span>mother <span class="op">|</span><span class="st"> </span>sex,</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">              <span class="dt">data =</span>  mod_shape, <span class="dt">alpha  =</span> <span class="fl">0.2</span>,</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5">              <span class="dt">inherit =</span>  <span class="ot">FALSE</span>)</a></code></pre></div>
+<p><img src="JMM-2020_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>Note: In the context provided by the data, it’s always clear whether a band is a prediction interval or a confidence interval.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">gf_point</span>(height <span class="op">~</span><span class="st"> </span>mother <span class="op">|</span><span class="st"> </span>sex,  <span class="dt">data =</span> Galton,</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">         <span class="dt">alpha =</span> <span class="fl">0.1</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="st">    </span><span class="kw">gf_ribbon</span>(lower <span class="op">+</span><span class="st"> </span>upper <span class="op">~</span><span class="st">  </span>mother <span class="op">|</span><span class="st"> </span>sex,</a>
+<a class="sourceLine" id="cb9-4" data-line-number="4">              <span class="dt">data =</span>  mod_shape2, <span class="dt">alpha  =</span> <span class="fl">0.4</span>,</a>
+<a class="sourceLine" id="cb9-5" data-line-number="5">              <span class="dt">inherit =</span>  <span class="ot">FALSE</span>)</a></code></pre></div>
+<p><img src="JMM-2020_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">mod &lt;-<span class="st"> </span><span class="kw">lm</span>(Height <span class="op">~</span><span class="st"> </span>Depressed, <span class="dt">data =</span> NHANES)</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">mod_shape &lt;-<span class="st"> </span><span class="kw">mod_eval</span>(mod, <span class="dt">interval =</span> <span class="st">&quot;prediction&quot;</span>)</a></code></pre></div>
+<p>Two distinct questions:</p>
+<ul>
+<li><strong>Prediction</strong>: Does knowing the mother’s height meaningfully narrow a prediction of the adult child’s height?</li>
+<li><strong>Description</strong>: Is the mother’s height connected with the adult child’s height?</li>
+</ul>
+</div>
+<div id="density-layer-1" class="section level3">
+<h3><span class="header-section-number">3.2.4</span> Density layer</h3>
+<p>The data points themselves indicate the joint probability density.</p>
+<p>Use another glyph to show conditional density: a violin:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">gf_jitter</span>(Poverty <span class="op">~</span><span class="st"> </span>Depressed,  <span class="dt">data =</span> NHANES,</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">          <span class="dt">alpha =</span> <span class="fl">0.03</span>, <span class="dt">width =</span> <span class="fl">0.2</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="st">    </span><span class="kw">gf_violin</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>, <span class="dt">fill  =</span> <span class="st">&quot;black&quot;</span>)</a></code></pre></div>
+<p><img src="JMM-2020_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+</div>
+<div id="exercises" class="section level2">
+<h2><span class="header-section-number">3.3</span> EXERCISES:</h2>
+<ul>
+<li>Is this a confidence interval or a prediction interval.</li>
+<li>For which group is low weight more common Weight ~ Smoker | Gender?</li>
+<li>Sketch out density violins.</li>
+<li>Which of these tells the story more clearly:
+Hourly number of rentals versus Time of Day and Client type and Weekday or Hourly number of rentals versus Weekday, Time of Day (color), and Client type.</li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="core-statistical-tools.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="computation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/dtkaplan/jmm-2020/edit/master/02-graphics.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["JMM-2020.pdf", "JMM-2020.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
