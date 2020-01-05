@@ -1,10 +1,37 @@
 # Generalizing Inference
 
+Objectives: Cover the genuinely useful settings of a traditional intro stats course while ...
+
+     - saving  time, so that we can choose to cover other topics: e.g. covariation, causality, decision-making, ...
+     - setting things up  for more  advanced settings: multiple regression, machine learning models, classification, ...
+     - simplifying the framework
+         - one set of formulas
+         - simple (or trivial) critical values
+     - avoiding undue emphasis on p values
+     - keeping an emphasis on prediction 
+     
+Recap: 
+
+- Make graphics about data, with annotations always presented in the context of data.
+- Rather than calculating "statistics" (e.g. mean, medians, ...) build a prediction model
+- Focus on effect size in natural units rather than dimensionless quantities such as r or $\chi^2$ or $p$. 
+
+Now ... how to set up the inference calculations.
+
+
 ## Variance: How much variation?
+
+We focus on the **response** variable ...
 
 Average pairwise square differences between values.
 
 $$\frac{1}{n (n-1)}\sum_{i \neq j} |x_i - x_j|^2 = 2\  \mbox{Var}(x)$$
+
+Some rules -- half width at half height, squared.
+
+$\Delta p(1-p)$
+
+
 
 ## Model values: How much has been explained?
 
