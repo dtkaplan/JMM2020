@@ -1,5 +1,9 @@
 # Generalizing Inference
 
+```{r include = FALSE}
+SDSdata::sds_setup()
+```
+
 Objectives: Cover the genuinely useful settings of a traditional intro stats course while ...
 
      - saving  time, so that we can choose to cover other topics: e.g. covariation, causality, decision-making, ...
@@ -27,13 +31,257 @@ Average pairwise square differences between values.
 
 $$\frac{1}{n (n-1)}\sum_{i \neq j} |x_i - x_j|^2 = 2\  \mbox{Var}(x)$$
 
-Some rules -- half width at half height, squared.
+Estimating variance by eye:
 
-$\Delta p(1-p)$
+- more-or-less normal: find interval covering  the central 2/3 of the data. (Thus,  1/6 is  left  out at either end.) Divide by 2 and square to get the variance.
+- Two discrete levels: $\Delta^2 p(1-p)$
+     - $p (1-p) \approx 1/4$ when levels  are more or less equally populated
+     - $p (1-p)  \approx 1/6$  when levels are noticeably unequally populated. 
+
+```{r}
+library(ggformula)
+
+Vals <- tibble::tibble(
+    p = seq(.2, .8, length = 100),
+    var = p*(1-p)
+)
+gf_line(var ~ p, data = Vals) %>%
+    gf_lims(x = c(0,1), y = c(0, .25)) %>% 
+    gf_hline(yintercept = c(1/4, 1/6), color = "blue", size = 0.5)
+```
+
+## Exercises
+
+pollen-sing-room for continuous
+
+tiger-hold-scarf for discrete
+
+puppy-put-table for discrete -- along with  F calculation.
+
+## Standard statistical calculations
+
+```{r echo = FALSE}
+plot_values <- function(raw, fitted, explan = "bogus", df = 1,
+                        violin = TRUE,
+                        R2 = TRUE,
+                        F = TRUE, 
+                        sd = TRUE) {
+    
+    Pts <- data.frame(raw = raw, model = fitted) %>%
+        tidyr::gather(key = source,  value = v) %>%
+        mutate(xpos = source)
+    if (is.numeric(explan)) {
+        explan <- explan  -  median(explan)
+        explan <- ((explan ) / 
+                       diff(range(explan))) / 2
+        Pts  <- Pts %>%
+        mutate(xpos = c(explan + 2,  explan + 1))
+        P <- 
+            gf_jitter(v ~ source,  data = Pts,  alpha = 0) %>%
+            gf_jitter(v ~ xpos, data = Pts, width = 0.1, 
+                      color =  ~  source,  alpha  = 0.2)
+    } else {
+        P <- gf_jitter(v ~ source, data  = Pts,
+              color = ~ source, alpha  = .2,
+              width = 0.4, height = 0)
+    }
+    
+    Stats <-  df_stats(v ~ source, data = Pts,
+                        m = mean, var = var)  %>%
+        mutate(high  =  m  + sqrt(var), low = m - sqrt(var))
+    R2val <- Stats$var[1] /  Stats$var[2]
+    
+    if (violin) 
+        P <- P %>%
+             gf_violin(fill = ~ source, alpha  = 0.2,
+                       color = ~ source) 
+    if (sd)
+        P <- P %>%
+        gf_errorbar(high + low ~ source, data = Stats,
+                    inherit  = FALSE) %>%
+        gf_point(m ~ source, data = Stats, color = "black",
+                    inherit = FALSE) 
+    label <- ""
+    if (R2) {
+        label <- paste0("R=", signif(sqrt(R2val), 2),
+                       "\nR^2=", signif(R2val, 2), "\n")
+    }
+    if (F) {
+        Fval <- ((length(raw) - df)/ df) * (R2val / (1 - R2val))
+        label <- paste(label, "n=", length(raw), 
+                       "\ndflex=",  df, "\nF=",
+                       signif(Fval, 2) )
+    }
+    P %>%
+        gf_label(high ~ source, data = Stats[2,], 
+                label = label,
+                label.size  = 0, fill = "blue",
+                color  =  "black",  vjust  =  0,
+                hjust  = 1,
+                alpha  = 0.2) %>%
+        gf_labs(x = "", y = "") %>%
+        gf_theme(axis.ticks.x = element_blank(),
+                 axis.text.y = element_blank(),
+                 legend.pos = "none") %>%
+        gf_refine(scale_colour_manual(
+            values = c("blue", "black")))
+}
+```
 
 
+```{r echo =  FALSE}
+plot_model <- function(formula, data, 
+                       show_model = TRUE,
+                       sd  =  TRUE, R2 = TRUE) {
+    response <- data[[formula[[2]]]]
+    response_name <- as.character(formula[[2]])
+    # is there  a  covariate
+    if (length(formula[[3]]) == 1) {
+        covariate <- NULL
+        explanatory <- data[[formula[[3]]]]
+        explanatory_name <- as.character(formula[[3]])
+    } else {
+        covariate <- data[[formula[[3]][[3]]]]
+        explanatory <- data[[formula[[3]][[2]]]]
+        covariate_name <- as.character(formula[[3]][[3]])
+        explanatory_name <- as.character(formula[[3]][[2]])
+    }
+    model <- lm(formula, data)
+    data$model_output  <- fitted(model)
+    
+    #  pull  out the  spatial  formula
+    plot_formula <- as.formula(paste(response_name, "~", 
+                                     explanatory_name))
+    color_formula <- 
+        if  (is.null(covariate)) "black"
+        else as.formula(paste("~", covariate_name))
+    P1 <- 
+        if  (is.numeric(explanatory)) {
+            gf_point(plot_formula, data  = data, 
+                     color  = color_formula, alpha = 0.2)
+        } else {
+            gf_jitter(plot_formula,  data = data,  
+                      color  = color_formula,
+                      alpha = 0.2,  width  =  0.2)
+        }
+    P1 <-
+        if (show_model) {
+            color_formula <- 
+                if  (is.null(covariate)) "blue"
+                else as.formula(paste("~", covariate_name))
+            if (is.numeric(explanatory)) {
+                mod_plot_formula <- 
+                as.formula(paste("model_output ~",
+                                 explanatory_name))
+                P1 %>%  
+                    gf_line(mod_plot_formula, data  = data,
+                            color = color_formula)
+            } else {
+                mod_plot_formula <-
+                    as.formula(paste("model_output  + model_output ~",  explanatory_name))
+                P1 %>%
+                    gf_errorbar(mod_plot_formula, 
+                                data = data,
+                                color  =  color_formula)
+            }
+    }
+    
+   
+    
+    P2 <- plot_values(response, 
+                      data$model_output, 
+                      explan = explanatory, 
+                      df = model$rank -  1,  
+                        violin = FALSE,
+                        R2 = TRUE,
+                        F = TRUE, 
+                        sd = TRUE)
+    
+    list(P1 = P1 %>% gf_theme(legend.position  =  "left"),
+        P2  = P2,
+        model = model)
+}
+```
+
+```{r}
+CPS <- CPS85 %>% filter(wage < 40) %>% sample_n(size =  100) %>%
+    mutate(genderM =  as.numeric(sex) -  1)
+setting_1 <- plot_model(wage ~ union, data = CPS)
+with(setting_1, grid.arrange(P1, P2, nrow = 1, widths = c(3,1)))
+
+setting_3 <- plot_model(wage ~ ns(educ, 4),  data = CPS)
+with(setting_3, grid.arrange(P1, P2, nrow = 1, widths = c(3,1)))
+
+setting_4 <- plot_model(genderM  ~ wage, data = CPS)
+with(setting_4, grid.arrange(P1, P2, nrow = 1, widths = c(3,1)))
+
+setting_5 <- plot_model(genderM  ~ union, data = CPS)
+with(setting_5, grid.arrange(P1, P2, nrow = 1, widths = c(3,1)))
+
+plot_model(wage ~ educ + union,  data = CPS) 
+plot_model(wage ~ sex * union,  data  = CPS)
+setting_6 <- plot_model(wage ~ sector,  data  =  CPS)
+with(setting_6, grid.arrange(P1, P2, nrow = 1, widths = c(3,1)))
+```
+
+### Difference in  two groups
+```{r echo=FALSE}
+set.seed(101)
+Sample <- CPS85 %>% filter(wage <  30) %>% sample_n(size = 100)
+
+
+```
+
+plot_values(raw = Sample$wage, 
+            fitted = fitted(lm(wage ~ educ,  data = Sample)),
+            explan = Sample$educ, 
+            violin = FALSE, R2 = TRUE)
+
+plot_values(Sample$wage, fitted(lm(wage ~ union, data = Sample)), violin = FALSE, R2 = TRUE) 
+```
+
+```{r}
+set.seed(101)
+CPS <- CPS85 %>% filter(wage  < 30) %>%
+    sample(size = 200)
+table(CPS$south)
+Stats <- df_stats(wage ~ south,  data = CPS,
+                  mean, ci.mean)
+P1 <- 
+    gf_jitter(wage ~ south, data = CPS) %>%
+    gf_errorbar(mean_wage + mean_wage ~ south,
+                data = Stats, inherit  = FALSE,
+                color = "blue", size = 2) 
+mod <- lm(wage ~ south, data = CPS)
+P2 <- plot_values(CPS$wage, fitted(mod), violin=FALSE, sd = TRUE)
+# P2 <- gf_jitter(wage ~ 1, data = CPS, width = 0.1, alpha = .2) %>%
+#     gf_violin(fill  = "gray", color = "gray", alpha = 0.5, width  = 0.2) %>%
+#     gf_labs(x = "", y = "") %>%
+#     gf_theme(axis.ticks.x = element_blank(),
+#              axis.text.y = element_blank())
+grid.arrange(P1, P2, nrow = 1, widths = c(3,1))
+```
 
 ## Model values: How much has been explained?
+
+```{r}
+library(LittleApp)
+set.seed(101)
+Sample <- CPS85 %>% sample_n(size = 20)
+smoother_plot(wage ~ educ,
+                  lm(wage ~ educ, data = Sample),
+                  Sample, 
+                  color = "gray",
+                  trace_vert = TRUE,
+                  trace_horiz = TRUE,
+                  show_mod_vals = FALSE,
+                  ruler = NULL) %>%
+    gf_lims(y = c(0, 30)) %>%
+    gf_labs(title = paste("Sample size", nrow(Sample)))
+summary(lm(wage ~ educ, data = Sample))
+```
+
+
 
 Pictures of model values and their variances compared to that of the response variable.
 
