@@ -1,0 +1,86 @@
+
+
+
+```{r echo  = FALSE,  eval=TRUE}
+set.seed(101)
+CPS <- CPS85 %>% filter(wage < 30) %>% sample_n(size  = 100) %>%
+    mutate(sexF = as.numeric(sex == "F"),
+           marriedY = as.numeric(married == "Married"))
+```
+
+`r tufte::newthought("Setting A")``r margin_note(questions)`
+```{r echo = FALSE}
+resA <- make_model_plots(married ~ sex, data = CPS,
+                         show_model = show_model)
+show_results(resA)
+```
+
+`r tufte::newthought("Setting B")``r margin_note(questions)`
+```{r echo = FALSE}
+resB  <- make_model_plots(wage ~ union, data = CPS,
+                       show_model = show_model)
+show_results(resB)
+```
+
+\newpage
+
+`r tufte::newthought("Setting C")``r margin_note(questions)`
+```{r echo = FALSE}
+resC  <- make_model_plots(married ~ age, data = CPS,
+                       show_model  =  show_model)
+show_results(resC)
+```
+
+`r tufte::newthought("Setting D")``r margin_note(questions)`
+```{r echo = FALSE}
+resD  <- make_model_plots(wage ~ educ, data = CPS,
+                       show_model  =  show_model)
+show_results(resD)
+```
+
+`r tufte::newthought("Setting E")``r margin_note(questions)`
+```{r echo = FALSE}
+resE  <- make_model_plots(married ~ ns(age,2) * sex,
+                          data = CPS,
+                          show_model  =  show_model)
+show_results(resE)
+```
+
+`r tufte::newthought("Setting F")``r margin_note(questions)`
+```{r echo = FALSE}
+resF  <- make_model_plots(wage ~ educ* sex, data = CPS,
+                       show_model  =  show_model)
+show_results(resF)
+```
+
+`r tufte::newthought("Setting G")``r margin_note(questions)`
+```{r echo = FALSE}
+resG <- make_model_plots(married ~ sex  *  union, data = CPS,
+                         show_model  =  show_model)
+show_results(resG)
+```
+
+
+`r tufte::newthought("Setting H")``r margin_note(questions)`
+```{r echo = FALSE}
+resH <- make_model_plots(married ~ sector, data = CPS,
+                         show_model  =  show_model)
+show_results(resH)
+```
+
+`r tufte::newthought("Setting I")``r margin_note(questions)`
+```{r echo = FALSE}
+resI <- make_model_plots(wage ~ sector, data = CPS,
+                         show_model  =  show_model,
+                         R2 = FALSE,  F = FALSE)
+show_results(resI)
+```
+
+`r tufte::newthought("Setting J")``r margin_note(questions)`
+```{r echo = FALSE}
+resJ <- make_model_plots(wage ~ sector  *  educ, data = CPS,
+                         show_model  =  show_model,
+                         R2 = FALSE,  F  =  FALSE)
+show_results(resJ)
+```
+

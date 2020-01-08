@@ -1,5 +1,7 @@
 # Stats and Data Science 
 
+`r foobar`
+
 ## The parable of the highway.
 
 (ref:street-1936-cap) Urban driving in 1936.

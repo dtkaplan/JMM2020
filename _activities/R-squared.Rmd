@@ -1,0 +1,45 @@
+---
+title: "Activity: R^2^ from model values"
+subtitle: "JMM Minicourse: Stats for Data Science"
+author: "Daniel Kaplan"
+date: "`r Sys.Date()`"
+output:
+  tufte::tufte_handout:
+    citation_package: natbib
+    latex_engine: xelatex
+  tufte::tufte_html: default
+  tufte::tufte_book:
+    citation_package: natbib
+    latex_engine: xelatex
+bibliography: skeleton.bib
+link-citations: yes
+---
+
+```{r setup, include=FALSE}
+SDSdata::sds_setup()
+library(LittleApp)
+library(tufte)
+# invalidate cache when the tufte version changes
+knitr::opts_chunk$set(tidy = FALSE, 
+                      cache.extra = packageVersion('tufte'),
+                      out.width="100%", fig.align="center", 
+                      fig.width  = 6, fig.height  = 3,
+                      eval=TRUE)
+options(htmltools.dir.version = FALSE)
+questions<-""
+show_model  <- TRUE
+show_results <- function(res) {
+  #res$P1
+  #anova(res$model)
+  with(res, 
+       gridExtra::grid.arrange(P1, P2$P, 
+                               nrow = 1, 
+                               widths = c(3,1)))
+}
+```
+
+For each setting, estimate R^2^.
+
+```{r child="settings.Rmd"}
+```
+

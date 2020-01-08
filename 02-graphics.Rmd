@@ -11,7 +11,7 @@ library(mosaicModel)
 
 Introductory statistics courses conventionally feature many types of graphics, e.g. histograms, stem-and-leaf plots, theoretical probability densities (often with tail probabilities annotated), bar charts, scatter plots, cross-tabulations, ...
 
-The graphics in this table come from a nice, open-source textbook: [OpenIntro Stats](https://www.openintro.org/book/os/) (4/e). This book is used successfully in  many colleges, ranging  from  two-year colleges to elite,  private, four-year schools. I paged through the book, capturing each new mode as I encountered it.
+The graphics in the following table come from a nice, open-source textbook: [OpenIntro Stats](https://www.openintro.org/book/os/) (4/e). This book is used successfully in  many colleges, ranging  from  two-year colleges to elite,  private, four-year schools. I paged through the book, capturing each new mode as I encountered it.
 
 As you look  through the collection, note how often ...
 
@@ -145,3 +145,146 @@ gf_jitter(Poverty ~ Depressed,  data = NHANES,
 - Sketch out density violins.
 - Which of these  tells the story  more clearly:
 Hourly number of rentals versus Time of Day and Client type and Weekday or Hourly number of rentals versus Weekday, Time of Day  (color), and Client  type.
+
+## Activity 2: Showing relationships
+
+Each of the following settings shows n = 100 data points. The variables are shown on the axes and, sometimes, as the name of a color legend. For each of the settings, your task is to:
+
+1. Describe the relationship depicted. Be as quantitative as one could expect  for an estimate *by eye*.
+2. Give the name of the appropriate inferential technique.
+    - Do you teach that technique in your introductory course.
+    - If not, where might students encounter that technique.
+3. Attempt to estimate, *by eye* and without whatever supplemental arithmetic is requires, the approximate values of the quantities produced by the technique in (2). For instance, is the relationship between the response and explanatory variables statistically discernable.^[Again, I'm using a proposed replacement for the traditional "significant."] 
+
+### Setting A
+
+```{r echo  = FALSE}
+set.seed(101)
+CPS <- CPS85 %>% filter(wage < 30) %>% sample_n(size  = 100) %>%
+    mutate(sexF = as.numeric(sex == "F"),
+           marriedY = as.numeric(married == "Married"))
+```
+
+```{r echo = FALSE}
+resA <- make_model_plots(marriedY ~ sex, data = CPS, 
+                         show_model = FALSE)
+resA$P1 %>%
+    gf_refine(
+        scale_y_continuous(
+            'Marital status', breaks  =  c(0, .25, .5, .75, 1), 
+            labels = c("Single", .25,  .5, .75, "Married"),
+            limits = c(-.1, 1.1)))
+```
+
+### Setting B
+
+```{r echo = FALSE}
+resB  <- make_model_plots(wage ~ union, data = CPS,
+                       show_model = FALSE,
+                       sd  =  TRUE, R2 = TRUE,
+                       F = TRUE)
+resB$P1
+```
+
+### Setting C
+
+```{r echo = FALSE}
+resC  <- make_model_plots(marriedY ~ age, data = CPS,
+                       show_model = FALSE,
+                       sd  =  TRUE, R2 = TRUE,
+                       F = TRUE)
+resC$P1  %>%
+    gf_refine(
+        scale_y_continuous(
+            'Marital status', 
+            breaks  =  c(0, .25, .5, .75, 1), 
+            labels = c("Single", .25, .5, .75, "Married"), 
+            limits = c(-.1, 1.1)))
+```
+
+### Setting D
+
+```{r echo = FALSE}
+resD  <- make_model_plots(wage ~ educ, data = CPS,
+                       show_model = FALSE,
+                       sd  =  TRUE, R2 = TRUE,
+                       F = TRUE)
+resD$P1 
+```
+
+### Setting E
+
+```{r echo = FALSE}
+resE  <- make_model_plots(marriedY ~ ns(age,3) * sex, data = CPS,
+                       show_model = FALSE,
+                       sd  =  TRUE, R2 = TRUE,
+                       F = TRUE)
+resE$P1  %>%
+    gf_refine(
+        scale_y_continuous(
+            'Marital status', 
+            breaks  =  c(0, .25, .5, .75, 1), 
+            labels = c("Single", .25, .5, .75, "Married"), 
+            limits = c(-.1, 1.1)))
+```
+
+### Setting F
+
+```{r echo = FALSE}
+resF  <- make_model_plots(wage ~ educ* sex, data = CPS,
+                       show_model = FALSE,
+                       sd  =  TRUE, R2 = TRUE,
+                       F = TRUE)
+resF$P1 
+```
+
+### Setting G
+
+```{r echo = FALSE}
+resG <- make_model_plots(marriedY ~ sex  *  union, data = CPS, 
+                         show_model = FALSE)
+resG$P1 %>%
+    gf_refine(
+        scale_y_continuous(
+            'Marital status', breaks  =  c(0, .25, .5, .75, 1), 
+            labels = c("Single", .25,  .5, .75, "Married"),
+            limits = c(-.1, 1.1)))
+```
+
+
+### Setting H
+
+```{r echo = FALSE}
+resH <- make_model_plots(marriedY ~ sector, data = CPS, 
+                         show_model = FALSE)
+resH$P1 %>%
+    gf_refine(
+        scale_y_continuous(
+            'Marital status', breaks  =  c(0, .25, .5, .75, 1), 
+            labels = c("Single", .25,  .5, .75, "Married"),
+            limits = c(-.1, 1.1)))
+```
+
+### Setting EYE
+
+```{r echo = FALSE}
+resI <- make_model_plots(wage ~ sector, data = CPS, 
+                         show_model = FALSE)
+resI$P1 
+```
+
+### Setting J
+
+```{r echo = FALSE}
+resJ <- make_model_plots(wage ~ sector  *  educ, data = CPS, 
+                         show_model = FALSE)
+resJ$P1 
+```
+
+
+
+
+
+
+
+

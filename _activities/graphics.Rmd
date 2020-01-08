@@ -1,0 +1,52 @@
+---
+title: "Activity: Graphical settings for inference"
+subtitle: "JMM Minicourse: Stats for Data Science"
+author: "Daniel Kaplan"
+date: "`r Sys.Date()`"
+output:
+  tufte::tufte_handout:
+    citation_package: natbib
+    latex_engine: xelatex
+  tufte::tufte_html: default
+  tufte::tufte_book:
+    citation_package: natbib
+    latex_engine: xelatex
+bibliography: skeleton.bib
+link-citations: yes
+---
+
+```{r setup, include=FALSE}
+SDSdata::sds_setup()
+library(LittleApp)
+library(tufte)
+# invalidate cache when the tufte version changes
+knitr::opts_chunk$set(tidy = FALSE, 
+                      cache.extra = packageVersion('tufte'),
+                      out.width="80%", fig.align="center", 
+                      fig.width  = 6, fig.height  = 3,
+                      eval=TRUE)
+options(htmltools.dir.version = FALSE)
+questions<-" inferential technique:\\newline \\newline inferential quantities:"
+show_model  <- TRUE
+show_results <- function(res) {
+  #res$P1
+  #anova(res$model)
+  with(res, 
+       gridExtra::grid.arrange(P1, P2$P, P2$label, 
+                               nrow = 1, 
+                               widths = c(3,1,1)))
+}
+```
+
+Each of the following settings shows n = 100 data points. The variables are shown on the axes and, sometimes, as the name of a color legend. For each of the settings, your task is to:
+
+1. Describe the relationship depicted. Be as quantitative as one could expect  for an estimate *by eye*.
+2. Give the name of the appropriate inferential technique.
+    - Do you teach that technique in your introductory course.
+    - If not, where might students encounter that technique.
+3. Attempt to estimate, *by eye* and without whatever supplemental arithmetic is requires, the approximate values of the quantities produced by the technique in (2). For instance, is the relationship between the response and explanatory variables statistically discernable.^[Again, I'm using a proposed replacement for the traditional "significant."] 
+4. Save this sheet. When we get to  the section on model functions, I'm going to ask  you to  draw an  appropriate model function for each setting.
+
+```{r child="settings.Rmd"}
+```
+
